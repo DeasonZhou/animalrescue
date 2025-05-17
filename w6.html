@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animal Rescue in Japan - Interactive Module (Revised B1 v4)</title>
+    <title>Animal Rescue in Japan - Interactive Module (Mobile Friendly)</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -57,14 +57,23 @@
         .vocabulary-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
         .vocabulary-table th, .vocabulary-table td {
             border: 1px solid #ddd; padding: 10px; text-align: left; font-size: 0.95em;
+            min-width: 80px; /* Helps with very narrow columns, but scroll is main solution */
         }
         .vocabulary-table th { background-color: #f0f2f5; }
+        /* NEW: Container for making table scrollable on mobile */
+        .vocabulary-table-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            margin-top: 10px; /* Add some space above the scrollable table */
+        }
+
         .flashcard-container {
             display: flex; flex-wrap: wrap; gap: 12px; margin-top: 15px; justify-content: space-around;
         }
         .flashcard {
             background-color: #e7f3ff; border: 1px solid #cce0ff; border-radius: 6px;
-            padding: 12px; width: calc(50% - 24px); min-height: 120px; cursor: pointer;
+            padding: 12px; width: calc(50% - 24px); /* Default two columns */
+            min-height: 120px; cursor: pointer;
             perspective: 1000px;
         }
         .flashcard-inner {
@@ -83,6 +92,15 @@
 
         .vocab-exercise { margin-top: 20px; padding: 15px; background-color: #f9f9f9; border-radius: 6px; }
         
+        /* Styles for Matching Game */
+        .matching-game-columns { /* NEW wrapper for the two columns */
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap; /* Allow wrapping for very small screens if needed, though stacking is primary */
+        }
+        #matchingTerms, #matchingDefinitions {
+            width: 48%; /* Default side-by-side */
+        }
         .matching-item { 
             padding: 8px; margin: 5px 0; background-color: #e7f3ff;
             border: 1px solid #cce0ff; border-radius: 4px; cursor: pointer;
@@ -114,10 +132,9 @@
         .quiz-question input[type="radio"], .reflection-question input[type="radio"], .quick-check-question input[type="radio"] {
             margin-right: 10px; transform: scale(1.1);
         }
-        /* For the reflection questions specifically, to make space for Japanese text */
         .reflection-question label .instruction-jp {
-            display: block; /* Make Japanese text take its own line if needed */
-            margin-left: 25px; /* Indent it slightly under the English option */
+            display: block; 
+            margin-left: 25px; 
             font-size: 0.9em;
             color: #555;
         }
@@ -163,6 +180,46 @@
              transform: translateX(-50%); border-width: 5px; border-style: solid;
              border-color: transparent transparent #f9f9f9 transparent;
         }
+
+        /* --- Media Queries for Responsiveness --- */
+        @media (max-width: 768px) { /* For tablets and larger phones */
+            .container {
+                padding: 15px; /* Reduce overall padding */
+            }
+            .flashcard {
+                width: calc(100% - 20px); /* Stack flashcards - one per row */
+                margin-bottom: 15px;
+            }
+
+            .matching-game-columns {
+                flex-direction: column; /* Stack word and definition columns */
+            }
+            #matchingTerms,
+            #matchingDefinitions {
+                width: 100%; /* Make each column full width when stacked */
+                margin-bottom: 15px; /* Space between stacked columns */
+            }
+
+            /* General font size adjustments for smaller screens */
+            h1 { font-size: 1.6em; }
+            h2 { font-size: 1.3em; }
+            h3 { font-size: 1.1em; }
+        }
+
+        @media (max-width: 480px) { /* For smaller phones */
+            h1 { font-size: 1.4em; }
+            h2 { font-size: 1.2em; }
+            .quiz-question label, .reflection-question label, .quick-check-question label,
+            button, .button-like {
+                padding: 12px 10px; /* Ensure tap targets are easy */
+                font-size: 0.95em;
+            }
+            .input-group input[type="text"] {
+                padding: 12px;
+                font-size: 0.95em;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -198,10 +255,12 @@
             
             <div class="vocab-exercise">
                 <h3>Vocabulary Table <span class="instruction-jp">単語表</span></h3>
-                <table class="vocabulary-table">
-                    <thead><tr><th>Word (単語)</th><th>Japanese (日本語)</th><th>Meaning (意味)</th><th>Example (例文)</th></tr></thead>
-                    <tbody id="vocabularyTableBody"></tbody>
-                </table>
+                <div class="vocabulary-table-container">
+                    <table class="vocabulary-table">
+                        <thead><tr><th>Word (単語)</th><th>Japanese (日本語)</th><th>Meaning (意味)</th><th>Example (例文)</th></tr></thead>
+                        <tbody id="vocabularyTableBody"></tbody>
+                    </table>
+                </div>
             </div>
 
             <div class="vocab-exercise" id="vocabFillBlankContainer">
@@ -212,9 +271,9 @@
             <div class="vocab-exercise" id="vocabMatchingContainer">
                 <h3>Exercise 2: Match the Word to its Meaning <span class="instruction-jp">練習2：単語と意味のマッチング</span></h3>
                 <p>Select a word on the left, then click its correct meaning on the right. <span class="instruction-jp">左の単語を選び、次に右の正しい意味をクリックしてください。</span></p>
-                <div style="display: flex; justify-content: space-between;">
-                    <div id="matchingTerms" style="width: 48%;"></div>
-                    <div id="matchingDefinitions" style="width: 48%;"></div>
+                <div class="matching-game-columns"> 
+                    <div id="matchingTerms"></div>
+                    <div id="matchingDefinitions"></div>
                 </div>
                 <div id="matchingFeedbackArea" style="margin-top:10px;"></div>
                  <button onclick="resetMatchingGame()">Reset Matching <span class="instruction-jp" style="color:white;font-size:0.8em;">(リセット)</span></button>
@@ -385,7 +444,7 @@
         </div>
 
         <div id="page7" class="page">
-            <h2>🎉 Module Complete! <span style="font-size:0.7em; font-weight:normal;">モジュール完了！</span></h2>
+             <h2>🎉 Module Complete! <span style="font-size:0.7em; font-weight:normal;">モジュール完了！</span></h2>
             <p>You have now learned more about animal rescue in Japan! <span class="instruction-jp">日本の動物保護について詳しく学びました！</span></p>
             <p id="studentNameGreeting_end" style="font-weight:bold;"></p>
             <p>Please use your understanding from this module and the choices you made in the reflection section to contribute to your group discussion. <span class="instruction-jp">このモジュールでの理解と、考察セクションで行った選択を活かして、グループディスカッションに貢献してください。</span></p>
@@ -409,8 +468,8 @@
     </div>
 
     <script>
-        // JavaScript code remains the same as the previous version (Revised B1 v3)
-        // No changes needed in JS for this specific HTML content update.
+        // JavaScript remains largely the same. 
+        // Ensure function calls and element IDs match the HTML structure.
         const pages = document.querySelectorAll('.page');
         const progressBar = document.getElementById('progressBar');
         const prevButton = document.getElementById('prevButton');
