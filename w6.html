@@ -10,7 +10,7 @@
             line-height: 1.6; margin: 0; padding: 15px; background-color: #f0f2f5; color: #1c1e21;
         }
         .container {
-            max-width: 800px; 
+            max-width: 800px;
             margin: auto; background: #fff; padding: 20px 25px; border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.1);
         }
@@ -54,96 +54,96 @@
             text-align: center; color: white; line-height: 22px; font-size: 0.8em;
             transition: width 0.3s ease-in-out;
         }
-        .vocabulary-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        .vocabulary-table th, .vocabulary-table td {
-            border: 1px solid #ddd; padding: 10px; text-align: left; font-size: 0.95em;
-            min-width: 80px; /* Helps with very narrow columns, but scroll is main solution */
-        }
-        .vocabulary-table th { background-color: #f0f2f5; }
-        /* NEW: Container for making table scrollable on mobile */
-        .vocabulary-table-container {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-            margin-top: 10px; /* Add some space above the scrollable table */
-        }
 
-        .flashcard-container {
-            display: flex; flex-wrap: wrap; gap: 12px; margin-top: 15px; justify-content: space-around;
-        }
+        #singleFlashcardDisplayArea { text-align: center; margin-top: 20px; }
+        #flashcardCounter { margin-bottom: 10px; font-size: 0.9em; color: #555; }
         .flashcard {
             background-color: #e7f3ff; border: 1px solid #cce0ff; border-radius: 6px;
-            padding: 12px; width: calc(50% - 24px); /* Default two columns */
-            min-height: 120px; cursor: pointer;
-            perspective: 1000px;
+            width: calc(80% - 24px);
+            min-height: 220px;
+            cursor: pointer;
+            perspective: 1000px; margin: 0 auto;
         }
         .flashcard-inner {
-            position: relative; width: 100%; height: 100%; text-align: center;
+            position: relative; width: 100%; height: 100%;
+            min-height: 220px;
+            text-align: center;
             transition: transform 0.6s; transform-style: preserve-3d;
         }
         .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
         .flashcard-front, .flashcard-back {
-            position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden;
-            backface-visibility: hidden; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; padding: 5px;
+            position: absolute; width: 100%; height: 100%;
+            -webkit-backface-visibility: hidden; backface-visibility: hidden;
+            display: flex; flex-direction: column;
+            padding: 20px; box-sizing: border-box; overflow-y: auto;
         }
-        .flashcard-front { font-weight: bold; font-size: 1.1em; }
-        .flashcard-back { background-color: #d0e4ff; transform: rotateY(180deg); font-size: 0.85em; }
-        .flashcard-back p { margin: 4px 0; }
+        .flashcard-front {
+            justify-content: center; align-items: center;
+            font-weight: bold; font-size: 1.7em; text-transform: lowercase;
+            background-color: #e7f3ff; border-radius: 6px;
+        }
+        .flashcard-back {
+            background-color: #d0e4ff; transform: rotateY(180deg);
+            font-size: 0.95em; text-align: left;
+            justify-content: flex-start; align-items: stretch;
+            border-radius: 6px;
+        }
+        .flashcard-back p { margin: 8px 0; width: 100%; }
+        .flashcard-back strong { color: #1877f2; }
+        #vocabNavButtons { margin-top: 20px; }
+        #allVocabLearnedMessage { margin-top:15px; color:green; text-align:center; font-weight: bold; }
+        .audio-button {
+            background: none; border: none; font-size: 1.5em; cursor: pointer; color: #1877f2;
+            padding: 5px; margin-left: 10px; vertical-align: middle;
+        }
+        .audio-button:hover { color: #166fe5; }
 
+        .vocab-exercise-section { margin-bottom: 30px; }
         .vocab-exercise { margin-top: 20px; padding: 15px; background-color: #f9f9f9; border-radius: 6px; }
-        
-        /* Styles for Matching Game */
-        .matching-game-columns { /* NEW wrapper for the two columns */
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap; /* Allow wrapping for very small screens if needed, though stacking is primary */
-        }
-        #matchingTerms, #matchingDefinitions {
-            width: 48%; /* Default side-by-side */
-        }
-        .matching-item { 
+
+        .matching-game-columns { display: flex; justify-content: space-between; flex-wrap: wrap; }
+        #matchingTerms, #matchingDefinitions { width: 48%; }
+        .matching-item {
             padding: 8px; margin: 5px 0; background-color: #e7f3ff;
             border: 1px solid #cce0ff; border-radius: 4px; cursor: pointer;
+            text-transform: lowercase;
         }
-        .matching-item.selected {
-            background-color: #a7cfff !important; 
-            border: 1px solid #1877f2 !important;
-        }
-        .matching-item.matched {
-            opacity: 0.5;
-            cursor: default;
-            background-color: #d0e4ff !important; 
-        }
+        .matching-item.selected { background-color: #a7cfff !important; border: 1px solid #1877f2 !important; }
+        .matching-item.matched { opacity: 0.5; cursor: default; background-color: #d0e4ff !important; }
 
         .quiz-question, .reflection-question, .quick-check-question {
             margin-bottom: 20px; padding: 15px; background-color: #f9f9f9;
             border-left: 5px solid #1877f2; border-radius: 0 4px 4px 0;
         }
         .quick-check-question { border-left-color: #28a745; }
+        .vocab-mcq-question { border-left-color: #ffc107; }
+
         .quiz-question p strong, .reflection-question p strong, .quick-check-question p strong { font-size: 1.05em; }
         .quiz-question label, .reflection-question label, .quick-check-question label {
             display: block; margin: 8px 0 8px 5px; padding: 10px;
             background-color: #fff; border: 1px solid #ddd; border-radius: 4px;
             cursor: pointer; transition: background-color 0.2s, border-color 0.2s;
         }
+        .quiz-question label span, .reflection-question label span, .quick-check-question label span {
+        }
+        .reflection-question label .instruction-jp, .navigation-buttons .instruction-jp,
+        .vocab-exercise .instruction-jp, h2 .instruction-jp, .page > p.instruction-jp,
+        button .instruction-jp {
+            text-transform: none !important;
+        }
+
         .quiz-question label:hover, .reflection-question label:hover, .quick-check-question label:hover {
             background-color: #f0f8ff; border-color: #1877f2;
         }
         .quiz-question input[type="radio"], .reflection-question input[type="radio"], .quick-check-question input[type="radio"] {
             margin-right: 10px; transform: scale(1.1);
         }
-        .reflection-question label .instruction-jp {
-            display: block; 
-            margin-left: 25px; 
-            font-size: 0.9em;
-            color: #555;
-        }
-
 
         .feedback { margin-top: 10px; padding: 10px; border-radius: 4px; font-size: 0.9em; }
         .feedback.correct { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
         .feedback.incorrect { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
-        
+        .feedback.info { background-color: #e7f3ff; color: #0c5460; border: 1px solid #b8daff; }
+
         ul.challenges li {
             cursor: pointer; margin-bottom: 8px; color: #1877f2;
             padding: 5px; border-radius: 3px; transition: background-color 0.2s;
@@ -155,16 +155,16 @@
             display: none; margin-top: 5px;
         }
 
-        .translateable {
-            border-bottom: 1px dotted #007bff; cursor: help; position: relative; 
+        .translateable { border-bottom: 1px dotted #007bff; cursor: help; position: relative; }
+        .vocab-highlight {
         }
         .tooltip {
-            display: none; position: absolute; background-color: #f9f9f9; color: #333; 
-            border: 1px solid #ccc; padding: 8px 12px; border-radius: 6px; font-size: 0.9em; 
-            z-index: 1000; width: auto; min-width: 100px; max-width: 250px; 
+            display: none; position: absolute; background-color: #f9f9f9; color: #333;
+            border: 1px solid #ccc; padding: 8px 12px; border-radius: 6px; font-size: 0.9em;
+            z-index: 1000; width: auto; min-width: 100px; max-width: 250px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.15); text-align: left;
         }
-        .tooltip::before { 
+        .tooltip::before {
             content: ""; position: absolute; border-width: 6px;
             border-style: solid; left: 50%; transform: translateX(-50%);
         }
@@ -180,50 +180,21 @@
              transform: translateX(-50%); border-width: 5px; border-style: solid;
              border-color: transparent transparent #f9f9f9 transparent;
         }
-
-        /* --- Media Queries for Responsiveness --- */
-        @media (max-width: 768px) { /* For tablets and larger phones */
-            .container {
-                padding: 15px; /* Reduce overall padding */
-            }
-            .flashcard {
-                width: calc(100% - 20px); /* Stack flashcards - one per row */
-                margin-bottom: 15px;
-            }
-
-            .matching-game-columns {
-                flex-direction: column; /* Stack word and definition columns */
-            }
-            #matchingTerms,
-            #matchingDefinitions {
-                width: 100%; /* Make each column full width when stacked */
-                margin-bottom: 15px; /* Space between stacked columns */
-            }
-
-            /* General font size adjustments for smaller screens */
-            h1 { font-size: 1.6em; }
-            h2 { font-size: 1.3em; }
-            h3 { font-size: 1.1em; }
+        .page p, .page li, .page div:not(.feedback):not(.progress-bar):not(.flashcard-front):not(.input-group label) {
+             font-weight: normal;
+        }
+        .page h1, .page h2, .page h3, .page h4, .page h5, .page h6,
+        .page strong, .page b,
+        .page .feedback.correct strong, .page .feedback.incorrect strong, #quizResult strong {
+            font-weight: bold;
         }
 
-        @media (max-width: 480px) { /* For smaller phones */
-            h1 { font-size: 1.4em; }
-            h2 { font-size: 1.2em; }
-            .quiz-question label, .reflection-question label, .quick-check-question label,
-            button, .button-like {
-                padding: 12px 10px; /* Ensure tap targets are easy */
-                font-size: 0.95em;
-            }
-            .input-group input[type="text"] {
-                padding: 12px;
-                font-size: 0.95em;
-            }
-        }
-
+        @media (max-width: 768px) { }
+        @media (max-width: 480px) { }
     </style>
 </head>
 <body>
-    <div id="translationTooltip" class="tooltip"></div> 
+    <div id="translationTooltip" class="tooltip"></div>
     <div class="container">
         <h1>🐾 Animal Rescue in Japan</h1>
         <p class="instruction-jp" style="text-align:center; font-size:1em; margin-top:-15px; margin-bottom:15px;">日本の動物保護について</p>
@@ -232,219 +203,252 @@
         </div>
 
         <div id="page1" class="page active">
-            <h2>Welcome! <span style="font-size:0.7em; font-weight:normal;">ようこそ！</span></h2>
+            <h2>Welcome! <span style="font-size:0.7em; font-weight:normal;" class="instruction-jp">ようこそ！</span></h2>
             <div class="input-group">
                 <label for="studentName">Name: <span style="font-weight:normal;">(お名前)</span></label>
                 <input type="text" id="studentName" placeholder="Enter your name / お名前を入力してください">
             </div>
             <p>By the end of this module, you will: <span class="instruction-jp">このモジュールの終わりまでに、以下のことができるようになります：</span></p>
             <ol>
-                <li>Learn key English vocabulary about animal rescue in Japan. <span class="instruction-jp">日本の動物保護に関する重要な英単語を学びます。</span></li>
+                <li>Learn key English vocabulary about animal rescue. <span class="instruction-jp">動物保護に関する重要な英単語を学びます。</span></li>
+                <li>Practice using this vocabulary in different contexts. <span class="instruction-jp">様々な文脈でこの語彙を使う練習をします。</span></li>
                 <li>Understand current issues and solutions through reading. <span class="instruction-jp">読解を通じて、現在の問題と解決策を理解します。</span></li>
-                <li>Check your understanding with short quizzes after each reading section. <span class="instruction-jp">各読解セクションの後に短いクイズで理解度を確認します。</span></li>
+                <li>Check your understanding with short quizzes. <span class="instruction-jp">短いクイズで理解度を確認します。</span></li>
                 <li>Prepare for a group discussion by considering different viewpoints. <span class="instruction-jp">様々な視点を考慮して、グループディスカッションの準備をします。</span></li>
             </ol>
             <p>💡 Use a dictionary app or online resources if you see new or difficult words. <span class="instruction-jp">新しい単語や難しい単語が出てきたら、辞書アプリやオンラインリソースを活用しましょう。</span></p>
-            <p>⏰ Estimated time: 30–35 minutes <span class="instruction-jp">所要時間：約30～35分</span></p>
+            <p>⏰ Estimated time: 30 minutes <span class="instruction-jp">所要時間：約30分</span></p>
         </div>
 
-        <div id="page2" class="page">
-            <h2>📘 Step 1: Mastering Key Vocabulary <span style="font-size:0.7em; font-weight:normal;">重要語彙の習得</span></h2>
-            <p>Click on a card to see its details. Then, try the exercises below. <span class="instruction-jp">カードをクリックすると詳細が見られます。その後、下の練習問題に挑戦してください。</span></p>
-            <div class="flashcard-container" id="flashcardContainer"></div>
-            
-            <div class="vocab-exercise">
-                <h3>Vocabulary Table <span class="instruction-jp">単語表</span></h3>
-                <div class="vocabulary-table-container">
-                    <table class="vocabulary-table">
-                        <thead><tr><th>Word (単語)</th><th>Japanese (日本語)</th><th>Meaning (意味)</th><th>Example (例文)</th></tr></thead>
-                        <tbody id="vocabularyTableBody"></tbody>
-                    </table>
+        <div id="page2_vocab_learn" class="page">
+            <h2>📘 Step 1: Mastering Key Vocabulary <span style="font-size:0.7em; font-weight:normal;" class="instruction-jp">重要語彙の習得</span></h2>
+            <p class="instruction-jp">Click on the card to see its details. Use the buttons to navigate through the words. カードをクリックすると詳細が見られます。ボタンを使って単語間を移動してください。</p>
+            <div id="singleFlashcardDisplayArea">
+                <div id="flashcardCounter">Word 1 of 11</div>
+                <div class="flashcard" id="currentFlashcard" onclick="this.classList.toggle('flipped');">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front" id="flashcardFrontContent"></div>
+                        <div class="flashcard-back" id="flashcardBackContent"></div>
+                    </div>
+                </div>
+                <div id="vocabNavButtons">
+                    <button id="prevVocabButton" onclick="showPrevWord()">Previous Word <span class="instruction-jp" style="color:white;font-size:0.8em;">(前の単語)</span></button>
+                    <button id="nextVocabButton" onclick="showNextWord()">Next Word <span class="instruction-jp" style="color:white;font-size:0.8em;">(次の単語)</span></button>
                 </div>
             </div>
-
-            <div class="vocab-exercise" id="vocabFillBlankContainer">
-                 <h3>Exercise 1: Fill in the Blanks <span class="instruction-jp">練習1：空所補充</span></h3>
-                 <p class="instruction-jp">文脈に合うように、正しい単語で空所を埋めてください。</p>
-            </div>
-
-            <div class="vocab-exercise" id="vocabMatchingContainer">
-                <h3>Exercise 2: Match the Word to its Meaning <span class="instruction-jp">練習2：単語と意味のマッチング</span></h3>
-                <p>Select a word on the left, then click its correct meaning on the right. <span class="instruction-jp">左の単語を選び、次に右の正しい意味をクリックしてください。</span></p>
-                <div class="matching-game-columns"> 
-                    <div id="matchingTerms"></div>
-                    <div id="matchingDefinitions"></div>
-                </div>
-                <div id="matchingFeedbackArea" style="margin-top:10px;"></div>
-                 <button onclick="resetMatchingGame()">Reset Matching <span class="instruction-jp" style="color:white;font-size:0.8em;">(リセット)</span></button>
+            <div id="allVocabLearnedMessage" class="feedback info" style="display:none; margin-top:20px;">
+                You have reviewed all vocabulary words! You are ready to practice. <span class="instruction-jp">全ての単語の確認が終わりました！練習に進む準備ができました。</span>
             </div>
         </div>
-        
-        <div id="page3" class="page">
-            <h2>📖 Reading Section 1 <span style="font-size:0.7em; font-weight:normal;">読解セクション1</span></h2>
+
+        <div id="page3_vocab_practice_mcq" class="page">
+            <h2>✏️ Step 2: Vocabulary Practice - Part 1 <span style="font-size:0.7em; font-weight:normal;" class="instruction-jp">語彙練習 - パート1</span></h2>
+             <div class="vocab-exercise-section">
+                <h3>Choose the Correct Word <span class="instruction-jp">正しい単語を選びましょう</span></h3>
+                <p class="instruction-jp">Choose the best word to complete each sentence. 各文を完成させるのに最も適切な単語を選んでください。</p>
+                <div class="vocab-exercise" id="vocabMCQContainer">
+                    </div>
+                <button type="button" id="checkMCQBtn" onclick="checkVocabMCQAnswers()">Check MCQ Answers <span class="instruction-jp" style="color:white;font-size:0.8em;">(答え合わせ)</span></button>
+                <div id="vocabMCQResult" class="feedback info" style="display:none; margin-top:15px;"></div>
+            </div>
+            <div id="vocabMCQPracticeCompleteMessage" class="feedback info" style="display:none; margin-top:20px; font-weight:bold;">
+                MCQ practice checked! You can now proceed to the matching exercise. <span class="instruction-jp">MCQ練習の確認ができました！マッチング練習に進めます。</span>
+            </div>
+        </div>
+
+        <div id="page4_vocab_practice_matching" class="page">
+            <h2>✏️ Step 2: Vocabulary Practice - Part 2 <span style="font-size:0.7em; font-weight:normal;" class="instruction-jp">語彙練習 - パート2</span></h2>
+            <div class="vocab-exercise-section">
+                <h3>Match Word to Meaning <span class="instruction-jp">単語と意味のマッチング</span></h3>
+                <p class="instruction-jp">Select a word on the left, then click its correct meaning on the right. 左の単語を選び、次に右の正しい意味をクリックしてください。</p>
+                <div class="vocab-exercise">
+                    <div class="matching-game-columns">
+                        <div id="matchingTerms"><h4>Words (単語)</h4></div>
+                        <div id="matchingDefinitions"><h4>Meanings (意味)</h4></div>
+                    </div>
+                    <div id="matchingFeedbackArea" class="feedback info" style="margin-top:10px;"></div>
+                    <button type="button" id="resetMatchingBtn" onclick="resetMatchingGame()">Reset Matching <span class="instruction-jp" style="color:white;font-size:0.8em;">(リセット)</span></button>
+                </div>
+                <div id="matchingGameResult" class="feedback info" style="display:none; margin-top:15px;">
+                    Great job matching all the words! <span class="instruction-jp">全ての単語をマッチできました！</span>
+                </div>
+            </div>
+            <div id="vocabMatchingPracticeCompleteMessage" class="feedback info" style="display:none; margin-top:20px; font-weight:bold;">
+                Vocabulary matching complete! You can now proceed to the readings. <span class="instruction-jp">単語のマッチング練習完了！読解に進めます。</span>
+            </div>
+        </div>
+
+        <div id="page5_read1" class="page">
+            <h2>📖 Step 3: Reading Section 1 <span style="font-size:0.7em; font-weight:normal;" class="instruction-jp">読解セクション1</span></h2>
             <p class="instruction-jp">英文を読み、難しい単語や表現に下線が引かれている場合はクリックして日本語訳を確認できます。読み終わったら、下の確認クイズに答えてください。</p>
-            
             <h3>🐱 Introduction: A Common Scene</h3>
-            <p>Imagine you are walking near your school. You see a cat under a bench. It looks <span class="translateable" data-japanese="怯えているように見える (obieteiru youni mieru)">scared</span> and thin. You might wonder: Is it lost? Does anyone care for it? Should I help? This situation is <span class="translateable" data-japanese="珍しくない (mezurashiku nai)">not uncommon</span> in Japan. Communities are thinking more about how to best care for stray and <span class="translateable" data-japanese="捨てられた (suterareta)">abandoned</span> animals.</p>
-
+            <p>Imagine you are walking near your school. You see a cat under a bench. It looks <span class="translateable" data-japanese="怯えているように見える (obieteiru youni mieru)">scared</span> and thin. You might wonder: Is it lost? Does anyone care for it? Should I help? This situation is <span class="translateable" data-japanese="珍しくない (mezurashiku nai)">not uncommon</span> in Japan. Communities are thinking more about how to best care for <span class="vocab-highlight" data-term="stray">stray</span> and <span class="vocab-highlight" data-term="abandon">abandoned</span> animals.</p>
             <h3>📜 Background, Laws & Statistics</h3>
-            <p>In the past, many stray animals in Japan were sadly <span class="translateable" data-japanese="安楽死させられた (anrakushi saserareta)">euthanized</span> at public shelters (often called 'hokenjo'). For example, in the 2004 fiscal year, about 395,000 dogs and cats were euthanized. (This included about 238,000 cats and 155,000 dogs). But now, more people understand this problem, and strong efforts have greatly changed this situation.</p>
-            <p>Japan's law, the <strong class="vocab-highlight" data-term="animal welfare">Act on Welfare and Management of Animals</strong>, has been changed several times to give more protection to animals. Important changes in 2019 (which started fully by 2022) mean bigger punishments for animal abuse and for <span class="translateable" data-japanese="捨てること (suteru koto)">leaving animals</span>. There are also <span class="translateable" data-japanese="より厳しい規則 (yori kibishii kisoku)">stronger rules</span> for pet sellers and breeders. If someone abandons an animal, they can now get fines or even go to prison.</p>
-            <p>Thanks to <strong class="vocab-highlight" data-term="rescue organization">rescue organizations</strong>, dedicated <strong class="vocab-highlight" data-term="volunteer">volunteers</strong>, <strong class="vocab-highlight" data-term="adoption center">adoption centers</strong>, and programs like <strong class="vocab-highlight" data-term="TNR">TNR (Trap-Neuter-Return)</strong>, Japan has very much lowered the number of animals euthanized. By the 2022 fiscal year, this number fell to about 9,000 (around 2,100 dogs and 6,900 cats). This is a reduction of over 97% from the 2004 numbers! (Source: Ministry of the Environment, Japan).</p>
-            <p><strong class="vocab-highlight" data-term="volunteer">Volunteers</strong> play a very <span class="translateable" data-japanese="重要な役割 (jūyōna yakuwari)">important role</span> in this change. They give their time to care for animals in shelters. They help animals become friendly so they can be adopted more easily. They also transport animals, raise money, and help with TNR work. Many non-profit animal groups <span class="translateable" data-japanese="大いに頼っている (ōi ni tayotte iru)">depend heavily</span> on these volunteers.</p>
-
+            <p>In the past, many <span class="vocab-highlight" data-term="stray">stray</span> animals in Japan were sadly <span class="vocab-highlight" data-term="euthanize">euthanized</span> at public <span class="vocab-highlight" data-term="shelter">shelters</span> (often called 'hokenjo'). For example, in the 2004 <span class="translateable" data-japanese="会計年度 (kaikei nendo)">fiscal year</span>, about 395,000 dogs and cats were <span class="vocab-highlight" data-term="euthanize">euthanized</span>. (This included about 238,000 cats and 155,000 dogs). But now, more people understand this problem, and strong efforts have greatly changed this situation.</p>
+            <p>Japan's law, the Act on <span class="vocab-highlight" data-term="animal welfare">Animal Welfare</span> and Management of Animals, has been changed several times to give more protection to animals. Important changes in 2019 (which started fully by 2022) mean bigger punishments for animal abuse and for <span class="vocab-highlight" data-term="abandon">leaving animals</span>. There are also stronger rules for pet sellers and breeders. If someone <span class="vocab-highlight" data-term="abandon">abandons</span> an animal, they can now get fines or even go to prison.</p>
+            <p>Thanks to <span class="vocab-highlight" data-term="rescue">rescue organizations</span>, <span class="translateable" data-japanese="献身的な (kenshinteki na)">dedicated</span> <span class="vocab-highlight" data-term="volunteer">volunteers</span>, <span class="vocab-highlight" data-term="adoption">adoption centers</span>, and programs like TNR (Trap-Neuter-Return), Japan has very much lowered the number of animals <span class="vocab-highlight" data-term="euthanize">euthanized</span>. By the 2022 <span class="translateable" data-japanese="会計年度 (kaikei nendo)">fiscal year</span>, this number fell to about 9,000 (around 2,100 dogs and 6,900 cats). This is a reduction of over 97% from the 2004 numbers! (Source: Ministry of the Environment, Japan).</p>
+            <p><span class="vocab-highlight" data-term="volunteer">Volunteers</span> play a very <span class="translateable" data-japanese="重要な役割 (jūyōna yakuwari)">important role</span> in this change. They give their time to care for animals in <span class="vocab-highlight" data-term="shelter">shelters</span>. They help animals become friendly so they can be <span class="vocab-highlight" data-term="adoption">adopted</span> more easily. They also transport animals, raise money, and help with TNR work. Many non-profit animal groups <span class="translateable" data-japanese="大いに頼っている (ōi ni tayotte iru)">depend heavily</span> on these <span class="vocab-highlight" data-term="volunteer">volunteers</span>.</p>
             <div class="section-divider"></div>
             <h3>Quick Check 1 <span class="instruction-jp">確認クイズ 1</span></h3>
             <div class="quick-check-question">
-                <p><strong>1. In the past, what often happened to stray animals in Japan?</strong></p>
-                <label><input type="radio" name="qc1_q1" value="A"> A. They were all adopted quickly.</label>
-                <label><input type="radio" name="qc1_q1" value="B"> B. Many were euthanized at public shelters.</label>
-                <label><input type="radio" name="qc1_q1" value="C"> C. They were mostly ignored.</label>
+                <p><strong>1. What was a significant issue for <span class="vocab-highlight" data-term="stray">stray</span> animals in Japan around 2004, according to the text?</strong></p>
+                <label><input type="radio" name="qc1_q1" value="A"> <span>A. a lack of <span class="vocab-highlight" data-term="volunteer">volunteers</span> to care for them.</span></label>
+                <label><input type="radio" name="qc1_q1" value="B"> <span>B. a very high number of them were <span class="vocab-highlight" data-term="euthanize">euthanized</span>.</span></label>
+                <label><input type="radio" name="qc1_q1" value="C"> <span>C. pet stores refused to sell them.</span></label>
                 <div id="feedback_qc1_q1" class="feedback" style="display:none;"></div>
             </div>
             <div class="quick-check-question">
-                <p><strong>2. True or False: The number of animals euthanized in Japan has increased since 2004.</strong></p>
-                <label><input type="radio" name="qc1_q2" value="True"> True</label>
-                <label><input type="radio" name="qc1_q2" value="False"> False</label>
+                <p><strong>2. Which of these has NOT contributed to lowering the number of euthanized animals in Japan?</strong></p>
+                <label><input type="radio" name="qc1_q2" value="A"> <span>A. changes in the Act on <span class="vocab-highlight" data-term="animal welfare">Animal Welfare</span> and Management of Animals.</span></label>
+                <label><input type="radio" name="qc1_q2" value="B"> <span>B. an increase in the number of pet breeders.</span></label>
+                <label><input type="radio" name="qc1_q2" value="C"> <span>C. the work of <span class="vocab-highlight" data-term="rescue">rescue organizations</span> and <span class="vocab-highlight" data-term="volunteer">volunteers</span>.</span></label>
                 <div id="feedback_qc1_q2" class="feedback" style="display:none;"></div>
             </div>
-            <button type="button" onclick="checkQuickCheck('qc1', {q1: 'B', q2: 'False'})">Check Answers <span class="instruction-jp" style="color:white;font-size:0.8em;">(答え合わせ)</span></button>
+            <button type="button" onclick="checkQuickCheck('qc1', {q1: 'B', q2: 'B'})">Check Answers <span class="instruction-jp" style="color:white;font-size:0.8em;">(答え合わせ)</span></button>
         </div>
 
-        <div id="page4" class="page">
-            <h2>📖 Reading Section 2 <span style="font-size:0.7em; font-weight:normal;">読解セクション2</span></h2>
-             <p class="instruction-jp">英文を読み、難しい単語や表現に下線が引かれている場合はクリックして日本語訳を確認できます。読み終わったら、下の確認クイズに答えてください。</p>
+        <div id="page6_read2" class="page">
+            <h2>📖 Step 4: Reading Section 2 <span style="font-size:0.7em; font-weight:normal;" class="instruction-jp">読解セクション2</span></h2>
+            <p class="instruction-jp">Continue reading and complete the quick check.</p>
             <h3>🐾 Real Story: Sakura the Cat & Community Cats</h3>
-            <p>In Sapporo, a thin grey cat was found behind a shop. A <span class="translateable" data-japanese="心配した住民 (shinpai shita jūmin)">person who was worried</span> contacted 猫の会 (Neko no Kai), a local <strong class="vocab-highlight" data-term="rescue organization">rescue group</strong>. Volunteers from the group safely trapped the cat. They took her to a veterinarian. The vet checked her health and saw she was a female cat that had not been spayed. The group arranged for her to be <strong class="vocab-highlight" data-term="spay/neuter">spayed</strong>.</p>
-            <p>After her surgery and recovery, one of her ears was clipped in a V-shape. This is a <span class="translateable" data-japanese="広く知られた印 (hiroku shirareta shirushi)">widely known mark</span>. It shows she is a <strong class="vocab-highlight" data-term="sakura cat">sakura cat</strong> (or community cat). This means she has been spayed and is part of a managed group of cats. The resident who first found her, and some neighbors, built a small, <span class="translateable" data-japanese="目立たない (medatanai)">simple</span> shelter box. They also started feeding her regularly. “She’s not a house pet like usual,” the resident said. “But our neighborhood knows her and takes care of her. She’s part of our local area now.”</p>
-            <p>This is a good example of <strong class="vocab-highlight" data-term="community cats">community cat care</strong>. Sometimes, if people just remove cats from an area, new cats that are not neutered quickly move in. This is called the "<span class="translateable" data-japanese="真空効果 (shinkū kōka)">vacuum effect</span>". The TNR way helps keep the number of cats more stable. People who care for these <strong class="vocab-highlight" data-term="sakura cat">sakura cats</strong> give them food and water, and watch their health. Community cat programs are successful in many places. But they sometimes have challenges, like getting enough money, making sure everyone in the community agrees, and keeping cats safe near busy roads.</p>
-            
+            <p>In Sapporo, a thin grey cat was found behind a shop. A <span class="translateable" data-japanese="心配した住民 (shinpai shita jūmin)">concerned resident</span> contacted 猫の会 (Neko no Kai), a local <span class="vocab-highlight" data-term="rescue">rescue group</span>. <span class="vocab-highlight" data-term="volunteer">Volunteers</span> from the group safely trapped the cat. They took her to a veterinarian. The vet checked her health and saw she was a female cat that had not been <span class="vocab-highlight" data-term="spay/neuter">spayed</span>. The group arranged for her to be <span class="vocab-highlight" data-term="spay/neuter">spayed</span>.</p>
+            <p>After her surgery and recovery, one of her ears was <span class="translateable" data-japanese="V字型に小さくカットされた (Bui-jigata ni chiisaku kattosareta)">clipped</span> in a V-shape. This is a widely known mark. It shows she is a sakura cat (or community cat). This means she has been <span class="vocab-highlight" data-term="spay/neuter">spayed</span> and is part of a managed group of cats. The resident who first found her, and some neighbors, built a small, simple <span class="vocab-highlight" data-term="shelter">shelter</span> box. They also started feeding her regularly. “She’s not a house pet like usual,” the resident said. “But our neighborhood knows her and takes care of her. She’s part of our local area now.”</p>
+            <p>This is a good example of community cat care. Sometimes, if people just remove cats from an area, new cats that are not <span class="vocab-highlight" data-term="spay/neuter">neutered</span> quickly move in. This is called the "<span class="translateable" data-japanese="真空効果 (shinkū kōka)">vacuum effect</span>"; it occurs when, if un-neutered cats are removed from an area, new un-neutered cats soon move in to occupy the available space and resources. The TNR way helps keep the number of cats more stable. People who care for these sakura cats give them food and water, and watch their health. Community cat programs are successful in many places. But they sometimes have challenges, like getting enough money, making sure everyone in the community agrees, and keeping cats safe near busy roads.</p>
             <div class="section-divider"></div>
             <h3>Quick Check 2 <span class="instruction-jp">確認クイズ 2</span></h3>
             <div class="quick-check-question">
-                <p><strong>1. What is a "sakura cat"?</strong></p>
-                <label><input type="radio" name="qc2_q1" value="A"> A. A special breed of cat from Sapporo.</label>
-                <label><input type="radio" name="qc2_q1" value="B"> B. A cat that has been spayed/neutered and has a clipped ear.</label>
-                <label><input type="radio" name="qc2_q1" value="C"> C. Any cat that lives in a park.</label>
+                <p><strong>1. What is the main purpose of the V-shaped ear clip on a "sakura cat"?</strong></p>
+                <label><input type="radio" name="qc2_q1" value="A"> <span>A. to show it belongs to a specific rescue group.</span></label>
+                <label><input type="radio" name="qc2_q1" value="B"> <span>B. to indicate it's a friendly cat that can be approached.</span></label>
+                <label><input type="radio" name="qc2_q1" value="C"> <span>C. to show it has been <span class="vocab-highlight" data-term="spay/neuter">spayed/neutered</span> as part of a community cat program.</span></label>
                 <div id="feedback_qc2_q1" class="feedback" style="display:none;"></div>
             </div>
-             <button type="button" onclick="checkQuickCheck('qc2', {q1: 'B'})">Check Answer <span class="instruction-jp" style="color:white;font-size:0.8em;">(答え合わせ)</span></button>
+            <div class="quick-check-question">
+                <p><strong>2. According to the text, what is the "vacuum effect" in the context of stray cats?</strong></p>
+                <label><input type="radio" name="qc2_q2" value="A"> <span>A. when removing cats makes an area cleaner and attracts more residents.</span></label>
+                <label><input type="radio" name="qc2_q2" value="B"> <span>B. when removing un-neutered cats leads to new un-neutered cats quickly taking their place.</span></label>
+                <label><input type="radio" name="qc2_q2" value="C"> <span>C. when TNR programs create a void that is hard to fill with volunteers.</span></label>
+                <div id="feedback_qc2_q2" class="feedback" style="display:none;"></div>
+            </div>
+            <button type="button" onclick="checkQuickCheck('qc2', {q1: 'C', q2: 'B'})">Check Answers <span class="instruction-jp" style="color:white;font-size:0.8em;">(答え合わせ)</span></button>
         </div>
-        
-        <div id="page5" class="page">
-            <h2>📖 Reading Section 3 <span style="font-size:0.7em; font-weight:normal;">読解セクション3</span></h2>
-            <p class="instruction-jp">英文を読み、難しい単語や表現に下線が引かれている場合はクリックして日本語訳を確認できます。読み終わったら、下の確認クイズに答えてください。</p>
+
+        <div id="page7_read3" class="page">
+            <h2>📖 Step 5: Reading Section 3 <span style="font-size:0.7em; font-weight:normal;" class="instruction-jp">読解セクション3</span></h2>
+            <p class="instruction-jp">Read the final section and consider the challenges.</p>
             <h3>🚨 Animal Rescue During Disasters & Ongoing Challenges</h3>
-            <p>As we said before, abandoning pets is illegal in Japan and there are punishments. But sadly, it still happens. Sometimes the problem gets <span class="translateable" data-japanese="より悪くなる (yori waruku naru)">worse</span> during a crisis, like an earthquake. After big disasters like the 2011 Tohoku earthquake and tsunami, or the 2016 Kumamoto earthquakes, many animals were lost, hurt, or left behind when people had to leave their homes quickly.</p>
-            <p>Organizations like JEARS (Japan Earthquake Animal Rescue and Support) and other local groups work very hard during these emergencies. Their <strong class="vocab-highlight" data-term="disaster response">disaster response</strong> includes rescuing pets from <span class="translateable" data-japanese="危険な場所 (kiken na basho)">dangerous places</span>, giving them temporary shelter and vet care, and trying to reunite them with their owners. The <strong class="vocab-highlight" data-term="rehabilitation">rehabilitation</strong> for these animals can take a long time. They need to recover both physically and mentally.</p>
-            <p>Even with much progress, there are still many challenges for animal welfare in Japan:</p>
+            <p>As we said before, <span class="vocab-highlight" data-term="abandon">abandoning</span> pets is illegal in Japan and there are punishments. But sadly, it still happens. Sometimes the problem gets worse during a <span class="translateable" data-japanese="危機 (kiki)">crisis</span>, like an earthquake. After big disasters like the 2011 Tohoku earthquake and tsunami, or the 2016 Kumamoto earthquakes, many animals were lost, hurt, or left behind when people had to leave their homes quickly.</p>
+            <p>Organizations like JEARS (Japan Earthquake Animal <span class="vocab-highlight" data-term="rescue">Rescue</span> and Support) and other local groups work very hard during these emergencies. Their disaster response includes <span class="vocab-highlight" data-term="rescue">rescuing</span> pets from dangerous places, giving them temporary <span class="vocab-highlight" data-term="shelter">shelter</span> and vet care, and trying to reunite them with their owners. The <span class="vocab-highlight" data-term="rehabilitation">rehabilitation</span> for these animals can take a long time. They need to recover both physically and mentally.</p>
+            <p>Even with much progress, there are still many challenges for <span class="vocab-highlight" data-term="animal welfare">animal welfare</span> in Japan:</p>
             <ul class="challenges">
-                <li onclick="toggleChallengeDetail('challenge1')">- People buying pets without thinking carefully, and then abandoning them. <span class="instruction-jp" style="font-size:0.9em; color:#555;">(衝動買いとその後の遺棄)</span></li>
-                <div class="challenge-detail" id="challenge1">Sometimes people get a pet because it's cute, but they don't understand it's a long-term responsibility. When they get bored or their life changes, they might abandon the pet. Stricter rules for selling pets are trying to <span class="translateable" data-japanese="これを減らす (kore o herasu)">reduce this</span>.</div>
-
+                <li onclick="toggleChallengeDetail('challenge1')">- People buying pets without thinking carefully, and then <span class="vocab-highlight" data-term="abandon">abandoning</span> them. <span class="instruction-jp" style="font-size:0.9em; color:#555;">(衝動買いとその後の遺棄)</span></li>
+                <div class="challenge-detail" id="challenge1">Sometimes people get a pet because it's cute, but they don't understand it's a long-term responsibility. When they get bored or their life changes, they might <span class="vocab-highlight" data-term="abandon">abandon</span> the pet. Stricter rules for selling pets are trying to reduce this.</div>
                 <li onclick="toggleChallengeDetail('challenge2')">- Keeping TNR and community cat programs running well. <span class="instruction-jp" style="font-size:0.9em; color:#555;">(TNRと地域猫プログラムの効果的な持続)</span></li>
-                 <div class="challenge-detail" id="challenge2">TNR works well, but it needs continuous effort and money. It can also be hard to get everyone in a community to agree. Some people worry about cleanliness or noise. Education and good communication are very important.</div>
-
-                <li onclick="toggleChallengeDetail('challenge3')">- Not enough money or help for local government shelters and NPOs. <span class="instruction-jp" style="font-size:0.9em; color:#555;">(地方自治体のシェルターやNPOの資源不足)</span></li>
-                <div class="challenge-detail" id="challenge3">Many shelters and rescue NPOs don't have much money. They <span class="translateable" data-japanese="大いに頼っている (ōi ni tayotte iru)">depend a lot</span> on donations and <strong class="vocab-highlight" data-term="volunteer">volunteers</strong>. They always need more money for medical care, spaying/neutering, and to run the shelter for animals that are hard to adopt.</div>
-                 <li onclick="toggleChallengeDetail('challenge4')">- Helping older pets and their older owners. <span class="instruction-jp" style="font-size:0.9em; color:#555;">(高齢化するペットと飼い主のニーズへの対応)</span></li>
+                <div class="challenge-detail" id="challenge2">TNR works well, but it needs continuous effort and money. It can also be hard to get everyone in a community to agree. Some people worry about cleanliness or noise. Education and good communication are very important.</div>
+                <li onclick="toggleChallengeDetail('challenge3')">- Not enough money or help for local government <span class="vocab-highlight" data-term="shelter">shelters</span> and NPOs. <span class="instruction-jp" style="font-size:0.9em; color:#555;">(地方自治体のシェルターやNPOの資源不足)</span></li>
+                <div class="challenge-detail" id="challenge3">Many <span class="vocab-highlight" data-term="shelter">shelters</span> and <span class="vocab-highlight" data-term="rescue">rescue</span> NPOs don't have much money. They depend a lot on donations and <span class="vocab-highlight" data-term="volunteer">volunteers</span>. They always need more money for medical care, <span class="vocab-highlight" data-term="spay/neuter">spaying/neutering</span>, and to run the <span class="vocab-highlight" data-term="shelter">shelter</span> for animals that are hard to <span class="vocab-highlight" data-term="adoption">adopt</span>.</div>
+                <li onclick="toggleChallengeDetail('challenge4')">- Helping older pets and their older owners. <span class="instruction-jp" style="font-size:0.9em; color:#555;">(高齢化するペットと飼い主のニーズへの対応)</span></li>
                 <div class="challenge-detail" id="challenge4">As people in Japan get older, their pets also get older. There is a growing worry about elderly owners who might become sick and unable to care for their pets. Japan needs good systems to support these owners or find new homes for their pets.</div>
             </ul>
-
             <div class="section-divider"></div>
             <h3>Quick Check 3 <span class="instruction-jp">確認クイズ 3</span></h3>
             <div class="quick-check-question">
-                <p><strong>1. What is a major challenge for animal rescue NPOs in Japan mentioned in the text?</strong></p>
-                <label><input type="radio" name="qc3_q1" value="A"> A. Too many volunteers.</label>
-                <label><input type="radio" name="qc3_q1" value="B"> B. Not enough animals to rescue.</label>
-                <label><input type="radio" name="qc3_q1" value="C"> C. Limited money and resources.</label>
+                <p><strong>1. What is one specific action JEARS takes during emergencies?</strong></p>
+                <label><input type="radio" name="qc3_q1" value="A"> <span>A. providing long-term <span class="vocab-highlight" data-term="adoption">adoption</span> services for all affected animals.</span></label>
+                <label><input type="radio" name="qc3_q1" value="B"> <span>B. trying to reunite pets with their owners.</span></label>
+                <label><input type="radio" name="qc3_q1" value="C"> <span>C. funding local government <span class="vocab-highlight" data-term="shelter">shelters</span> directly.</span></label>
                 <div id="feedback_qc3_q1" class="feedback" style="display:none;"></div>
             </div>
-             <button type="button" onclick="checkQuickCheck('qc3', {q1: 'C'})">Check Answer <span class="instruction-jp" style="color:white;font-size:0.8em;">(答え合わせ)</span></button>
+             <div class="quick-check-question">
+                <p><strong>2. Which of the following is listed as an "ongoing challenge" for <span class="vocab-highlight" data-term="animal welfare">animal welfare</span> in Japan, apart from funding?</strong></p>
+                <label><input type="radio" name="qc3_q2" value="A"> <span>A. too many people wanting to <span class="vocab-highlight" data-term="volunteer">volunteer</span> at <span class="vocab-highlight" data-term="shelter">shelters</span>.</span></label>
+                <label><input type="radio" name="qc3_q2" value="B"> <span>B. difficulty in getting community agreement for TNR programs.</span></label>
+                <label><input type="radio" name="qc3_q2" value="C"> <span>C. a shortage of veterinarians specializing in disaster <span class="vocab-highlight" data-term="rescue">rescue</span>.</span></label>
+                <div id="feedback_qc3_q2" class="feedback" style="display:none;"></div>
+            </div>
+            <button type="button" onclick="checkQuickCheck('qc3', {q1: 'B', q2: 'B'})">Check Answers <span class="instruction-jp" style="color:white;font-size:0.8em;">(答え合わせ)</span></button>
         </div>
 
-        <div id="page6" class="page">
-            <h2>📝 Final Review <span style="font-size:0.7em; font-weight:normal;">最終確認</span></h2>
-            <p class="instruction-jp">これまでの読解内容全体についてのクイズと、ディスカッションのための考察問題です。</p>
-            
-            <h3>Overall Comprehension Quiz <span class="instruction-jp">総合理解度クイズ</span></h3>
+        <div id="page8_overall_quiz" class="page">
+            <h2>📝 Step 6: Overall Comprehension Quiz <span style="font-size:0.7em; font-weight:normal;" class="instruction-jp">総合理解度クイズ</span></h2>
+            <p class="instruction-jp">Test your understanding of all the reading sections. You must answer all questions correctly to proceed.</p>
             <form id="comprehensionQuiz">
                 <div class="quiz-question">
                     <p><strong>1. What does TNR primarily stand for?</strong></p>
-                    <label><input type="radio" name="q1_tnr" value="A"> A. Train–Nurture–Release</label>
-                    <label><input type="radio" name="q1_tnr" value="B"> B. Trap–Neuter–Return</label>
-                    <label><input type="radio" name="q1_tnr" value="C"> C. Tag–Number–Report</label>
+                    <label><input type="radio" name="q1_tnr" value="A"> <span>A. train–nurture–release</span></label>
+                    <label><input type="radio" name="q1_tnr" value="B"> <span>B. trap–neuter–return</span></label>
+                    <label><input type="radio" name="q1_tnr" value="C"> <span>C. tag–number–report</span></label>
                     <div id="feedback_q1_tnr" class="feedback" style="display:none;"></div>
                 </div>
                 <div class="quiz-question">
-                    <p><strong>2. What is one key purpose of Japan's "Act on Welfare and Management of Animals"?</strong></p>
-                    <label><input type="radio" name="q2_act" value="A"> A. To encourage more pet stores.</label>
-                    <label><input type="radio" name="q2_act" value="B"> B. To give more protection to animals and set rules for pet sellers.</label>
-                    <label><input type="radio" name="q2_act" value="C"> C. To promote specific breeds of dogs and cats.</label>
+                    <p><strong>2. What is one key purpose of Japan's "Act on <span class="vocab-highlight" data-term="animal welfare">Animal Welfare</span> and Management of Animals"?</strong></p>
+                    <label><input type="radio" name="q2_act" value="A"> <span>A. to encourage more pet stores.</span></label>
+                    <label><input type="radio" name="q2_act" value="B"> <span>B. to give more protection to animals and set rules for pet sellers.</span></label>
+                    <label><input type="radio" name="q2_act" value="C"> <span>C. to promote specific breeds of dogs and cats.</span></label>
                     <div id="feedback_q2_act" class="feedback" style="display:none;"></div>
                 </div>
                 <div class="quiz-question">
                     <p><strong>3. What does JEARS primarily do?</strong></p>
-                    <label><input type="radio" name="q3_jears" value="A"> A. It sells pet supplies internationally.</label>
-                    <label><input type="radio" name="q3_jears" value="B"> B. It rescues and supports animals during disasters in Japan.</label>
-                    <label><input type="radio" name="q3_jears" value="C"> C. It organizes cat shows and competitions.</label>
+                    <label><input type="radio" name="q3_jears" value="A"> <span>A. It sells pet supplies internationally.</span></label>
+                    <label><input type="radio" name="q3_jears" value="B"> <span>B. It <span class="vocab-highlight" data-term="rescue">rescues</span> and supports animals during disasters in Japan.</span></label>
+                    <label><input type="radio" name="q3_jears" value="C"> <span>C. It organizes cat shows and competitions.</span></label>
                     <div id="feedback_q3_jears" class="feedback" style="display:none;"></div>
                 </div>
-                <div class="quiz-question">
-                    <p><strong>4. True or False: The "vacuum effect," as described in the reading, helps reduce the number of new stray cats in an area when cats are simply removed.</strong></p>
-                    <label><input type="radio" name="q4_vacuum" value="True"> True</label>
-                    <label><input type="radio" name="q4_vacuum" value="False"> False</label>
+                 <div class="quiz-question">
+                    <p><strong>4. True or False: The "vacuum effect," as described in the reading, helps reduce the number of new <span class="vocab-highlight" data-term="stray">stray</span> cats in an area when cats are simply removed.</strong></p>
+                    <label><input type="radio" name="q4_vacuum" value="True"> <span>True</span></label>
+                    <label><input type="radio" name="q4_vacuum" value="False"> <span>False</span></label>
                     <div id="feedback_q4_vacuum" class="feedback" style="display:none;"></div>
                 </div>
                 <div class="quiz-question">
-                    <p><strong>5. According to the reading, the number of euthanized dogs and cats in Japan has:</strong></p>
-                    <label><input type="radio" name="q5_euth" value="A"> A. Stayed about the same since 2004.</label>
-                    <label><input type="radio" name="q5_euth" value="B"> B. Increased significantly due to more stray animals.</label>
-                    <label><input type="radio" name="q5_euth" value="C"> C. Decreased very significantly since 2004.</label>
+                    <p><strong>5. According to the reading, the number of <span class="vocab-highlight" data-term="euthanize">euthanized</span> dogs and cats in Japan has:</strong></p>
+                    <label><input type="radio" name="q5_euth" value="A"> <span>A. stayed about the same since 2004.</span></label>
+                    <label><input type="radio" name="q5_euth" value="B"> <span>B. increased significantly due to more <span class="vocab-highlight" data-term="stray">stray</span> animals.</span></label>
+                    <label><input type="radio" name="q5_euth" value="C"> <span>C. decreased very significantly since 2004.</span></label>
                     <div id="feedback_q5_euth" class="feedback" style="display:none;"></div>
                 </div>
                 <button type="button" onclick="submitFinalQuiz()">Submit Quiz <span class="instruction-jp" style="color:white;font-size:0.8em;">(クイズを提出)</span></button>
             </form>
             <div id="quizResult" style="margin-top:20px; font-weight:bold;"></div>
+        </div>
 
-            <div class="section-divider"></div>
-            <h3>💭 Think & Prepare for Discussion <span class="instruction-jp">考えてディスカッションの準備</span></h3>
-            <p>Consider the following topics. Choose the option that best reflects your current thoughts. <span class="instruction-jp">以下のトピックについて考えてみましょう。現在のあなたの考えに最も近い選択肢を選んでください。</span></p>
-            
+        <div id="page9_discuss" class="page">
+            <h2>💭 Step 7: Think & Prepare for Discussion <span style="font-size:0.7em; font-weight:normal;" class="instruction-jp">考えてディスカッションの準備</span></h2>
+            <p class="instruction-jp">Consider the following topics. Choose the option that best reflects your current thoughts. 以下のトピックについて考えてみましょう。現在のあなたの考えに最も近い選択肢を選んでください。</p>
             <div class="reflection-question">
                 <p><strong>1. What do you see as the main benefit of the TNR (Trap-Neuter-Return) system for community cats?</strong> <span class="instruction-jp">(地域猫のためのTNRシステムの主な利点は何だと思いますか？)</span></p>
-                <label><input type="radio" name="reflect_tnr" value="population"> A. It helps control the stray cat population humanely. <span class="instruction-jp">(人道的に野良猫の数を抑制するのに役立つ)</span></label>
-                <label><input type="radio" name="reflect_tnr" value="health"> B. It can improve the general health and reduce fighting among cats. <span class="instruction-jp">(猫全体の健康を改善し、喧嘩を減らすことができる)</span></label>
-                <label><input type="radio" name="reflect_tnr" value="nuisance"> C. It reduces nuisance behaviors and complaints from residents. <span class="instruction-jp">(迷惑行為や住民からの苦情を減らす)</span></label>
-                <label><input type="radio" name="reflect_tnr" value="all"> D. All of the above are significant benefits. <span class="instruction-jp">(上記のすべてが重要な利点である)</span></label>
+                <label><input type="radio" name="reflect_tnr" value="population"> <span>A. It helps control the <span class="vocab-highlight" data-term="stray">stray</span> cat population <span class="vocab-highlight" data-term="humane">humanely</span>.</span> <span class="instruction-jp">(人道的に野良猫の数を抑制するのに役立つ)</span></label>
+                <label><input type="radio" name="reflect_tnr" value="health"> <span>B. It can improve the general health and reduce fighting among cats.</span> <span class="instruction-jp">(猫全体の健康を改善し、喧嘩を減らすことができる)</span></label>
+                <label><input type="radio" name="reflect_tnr" value="nuisance"> <span>C. It reduces nuisance behaviors and complaints from residents.</span> <span class="instruction-jp">(迷惑行為や住民からの苦情を減らす)</span></label>
+                <label><input type="radio" name="reflect_tnr" value="all"> <span>D. All of the above are significant benefits.</span> <span class="instruction-jp">(上記のすべてが重要な利点である)</span></label>
             </div>
             <div class="reflection-question">
                 <p><strong>2. Regarding the community cat approach (e.g., "sakura cats" cared for by locals):</strong> <span class="instruction-jp">(地域猫アプローチ（例：地域住民による「さくら猫」の世話）について：)</span></p>
-                <label><input type="radio" name="reflect_community_cat" value="support"> A. I strongly support it as a compassionate and practical solution. <span class="instruction-jp">(思いやりがあり実用的な解決策として強く支持する)</span></label>
-                <label><input type="radio" name="reflect_community_cat" value="concerns"> B. I think it's good, but I have some concerns about cat welfare or public acceptance. <span class="instruction-jp">(良いと思うが、猫の福祉や社会的な受容についていくつかの懸念がある)</span></label>
-                <label><input type="radio" name="reflect_community_cat" value="shelter_ideal"> C. I believe all cats should ideally be in homes or traditional shelters, not living outside. <span class="instruction-jp">(全ての猫は理想的には家や従来のシェルターにいるべきで、屋外で生活すべきではないと考える)</span></label>
-                <label><input type="radio" name="reflect_community_cat" value="unsure"> D. I'm still unsure or need more information to form a strong opinion. <span class="instruction-jp">(まだ確信が持てない、または強い意見を持つためにはより多くの情報が必要)</span></label>
+                <label><input type="radio" name="reflect_community_cat" value="support"> <span>A. I strongly support it as a compassionate and practical solution.</span> <span class="instruction-jp">(思いやりがあり実用的な解決策として強く支持する)</span></label>
+                <label><input type="radio" name="reflect_community_cat" value="concerns"> <span>B. I think it's good, but I have some concerns about cat <span class="vocab-highlight" data-term="animal welfare">animal welfare</span> or public acceptance.</span> <span class="instruction-jp">(良いと思うが、猫の福祉や社会的な受容についていくつかの懸念がある)</span></label>
+                <label><input type="radio" name="reflect_community_cat" value="shelter_ideal"> <span>C. I believe all cats should ideally be in homes or traditional <span class="vocab-highlight" data-term="shelter">shelters</span>, not living outside.</span> <span class="instruction-jp">(全ての猫は理想的には家や従来のシェルターにいるべきで、屋外で生活すべきではないと考える)</span></label>
+                <label><input type="radio" name="reflect_community_cat" value="unsure"> <span>D. I'm still unsure or need more information to form a strong opinion.</span> <span class="instruction-jp">(まだ確信が持てない、または強い意見を持つためにはより多くの情報が必要)</span></label>
             </div>
             <div class="reflection-question">
-                <p><strong>3. When considering getting a pet, what is your general stance on adoption vs. buying?</strong> <span class="instruction-jp">(ペットを飼うことを考える際、譲渡と購入についてのあなたの一般的な立場は？)</span></p>
-                <label><input type="radio" name="reflect_adopt_buy" value="adopt_strong"> A. I would strongly prefer to adopt from a shelter or rescue. <span class="instruction-jp">(シェルターや保護団体からの譲渡を強く希望する)</span></label>
-                <label><input type="radio" name="reflect_adopt_buy" value="adopt_consider"> B. I would consider adoption, but also be open to buying from a reputable breeder/store. <span class="instruction-jp">(譲渡も考えるが、信頼できるブリーダーや店からの購入も視野に入れる)</span></label>
-                <label><input type="radio" name="reflect_adopt_buy" value="buy_breed"> C. I would likely prefer to buy, perhaps for a specific breed or known history. <span class="instruction-jp">(特定の品種や履歴がわかるため、購入を希望する可能性が高い)</span></label>
-                <label><input type="radio" name="reflect_adopt_buy" value="depends"> D. It really depends on the situation and the specific animal. <span class="instruction-jp">(状況や特定の動物によって本当に異なる)</span></label>
+                <p><strong>3. When considering getting a pet, what is your general stance on <span class="vocab-highlight" data-term="adoption">adoption</span> vs. buying?</strong> <span class="instruction-jp">(ペットを飼うことを考える際、譲渡と購入についてのあなたの一般的な立場は？)</span></p>
+                <label><input type="radio" name="reflect_adopt_buy" value="adopt_strong"> <span>A. I would strongly prefer to <span class="vocab-highlight" data-term="adoption">adopt</span> from a <span class="vocab-highlight" data-term="shelter">shelter</span> or <span class="vocab-highlight" data-term="rescue">rescue</span>.</span> <span class="instruction-jp">(シェルターや保護団体からの譲渡を強く希望する)</span></label>
+                <label><input type="radio" name="reflect_adopt_buy" value="adopt_consider"> <span>B. I would consider <span class="vocab-highlight" data-term="adoption">adoption</span>, but also be open to buying from a reputable breeder/store.</span> <span class="instruction-jp">(譲渡も考えるが、信頼できるブリーダーや店からの購入も視野に入れる)</span></label>
+                <label><input type="radio" name="reflect_adopt_buy" value="buy_breed"> <span>C. I would likely prefer to buy, perhaps for a specific breed or known history.</span> <span class="instruction-jp">(特定の品種や履歴がわかるため、購入を希望する可能性が高い)</span></label>
+                <label><input type="radio" name="reflect_adopt_buy" value="depends"> <span>D. It really depends on the situation and the specific animal.</span> <span class="instruction-jp">(状況や特定の動物によって本当に異なる)</span></label>
             </div>
             <div class="reflection-question">
-                <p><strong>4. As a university student, what do you think is a practical way to support animal rescue efforts?</strong> <span class="instruction-jp">(大学生として、動物保護活動を支援する実用的な方法は何だと思いますか？)</span></p>
-                <label><input type="radio" name="reflect_student_help" value="volunteer_time"> A. Volunteering time at a local shelter or for an NPO, if possible. <span class="instruction-jp">(可能であれば、地元のシェルターやNPOでボランティア活動をする)</span></label>
-                <label><input type="radio" name="reflect_student_help" value="awareness_social"> B. Raising awareness among friends and on social media about responsible pet ownership and adoption. <span class="instruction-jp">(責任あるペットの飼い方や譲渡について、友人やSNSで意識を高める)</span></label>
-                <label><input type="radio" name="reflect_student_help" value="fundraise_donate"> C. Participating in fundraising activities or making small donations. <span class="instruction-jp">(資金調達活動に参加したり、少額の寄付をする)</span></label>
-                <label><input type="radio" name="reflect_student_help" value="all_practical"> D. Any or all of the above, depending on individual capacity. <span class="instruction-jp">(個人の能力に応じて、上記のいずれか、またはすべて)</span></label>
+                <p><strong>4. As a university student, what do you think is a practical way to support animal <span class="vocab-highlight" data-term="rescue">rescue</span> efforts?</strong> <span class="instruction-jp">(大学生として、動物保護活動を支援する実用的な方法は何だと思いますか？)</span></p>
+                <label><input type="radio" name="reflect_student_help" value="volunteer_time"> <span>A. <span class="vocab-highlight" data-term="volunteer">Volunteering</span> time at a local <span class="vocab-highlight" data-term="shelter">shelter</span> or for an NPO, if possible.</span> <span class="instruction-jp">(可能であれば、地元のシェルターやNPOでボランティア活動をする)</span></label>
+                <label><input type="radio" name="reflect_student_help" value="awareness_social"> <span>B. Raising awareness among friends and on social media about responsible pet ownership and <span class="vocab-highlight" data-term="adoption">adoption</span>.</span> <span class="instruction-jp">(責任あるペットの飼い方や譲渡について、友人やSNSで意識を高める)</span></label>
+                <label><input type="radio" name="reflect_student_help" value="fundraise_donate"> <span>C. Participating in fundraising activities or making small donations.</span> <span class="instruction-jp">(資金調達活動に参加したり、少額の寄付をする)</span></label>
+                <label><input type="radio" name="reflect_student_help" value="all_practical"> <span>D. Any or all of the above, depending on individual capacity.</span> <span class="instruction-jp">(個人の能力に応じて、上記のいずれか、またはすべて)</span></label>
             </div>
-            <button onclick="saveReflectionChoices()">Save My Choices for Discussion <span class="instruction-jp" style="color:white;font-size:0.8em;">(ディスカッションのために選択を保存)</span></button>
-            <div id="reflectionFeedback" style="font-size:0.9em; color:green; display:none; margin-top:10px;"></div>
+            <button type="button" onclick="saveReflectionChoices()">Save My Choices for Discussion <span class="instruction-jp" style="color:white;font-size:0.8em;">(ディスカッションのために選択を保存)</span></button>
+            <div id="reflectionFeedback" class="feedback info" style="font-size:0.9em; display:none; margin-top:10px;"></div>
         </div>
 
-        <div id="page7" class="page">
-             <h2>🎉 Module Complete! <span style="font-size:0.7em; font-weight:normal;">モジュール完了！</span></h2>
+        <div id="page10_module_complete" class="page">
+            <h2>🎉 Module Complete! <span style="font-size:0.7em; font-weight:normal;" class="instruction-jp">モジュール完了！</span></h2>
             <p>You have now learned more about animal rescue in Japan! <span class="instruction-jp">日本の動物保護について詳しく学びました！</span></p>
             <p id="studentNameGreeting_end" style="font-weight:bold;"></p>
             <p>Please use your understanding from this module and the choices you made in the reflection section to contribute to your group discussion. <span class="instruction-jp">このモジュールでの理解と、考察セクションで行った選択を活かして、グループディスカッションに貢献してください。</span></p>
@@ -468,8 +472,6 @@
     </div>
 
     <script>
-        // JavaScript remains largely the same. 
-        // Ensure function calls and element IDs match the HTML structure.
         const pages = document.querySelectorAll('.page');
         const progressBar = document.getElementById('progressBar');
         const prevButton = document.getElementById('prevButton');
@@ -477,361 +479,489 @@
         const translationTooltip = document.getElementById('translationTooltip');
         let studentName = "";
         let currentPageIndex = 0;
-        const totalPages = pages.length; 
+        const totalPages = 10;
+
+        let allVocabReviewed = false;
+        let vocabMCQAttempted = false;
+        let vocabMatchingAttempted = false;
+        let finalQuizAllCorrect = false;
+        let reflectionChoicesSaved = false;
 
         const vocabularyData = [
-            { word: "euthanize", japanese: "安楽死させる", meaning: "To humanely end an animal’s life", example: "Many stray dogs were euthanized before laws changed." },
-            { word: "abandon", japanese: "遺棄する", meaning: "To leave a pet without care", example: "Some owners abandon pets in parks." },
-            { word: "community cats", japanese: "地域猫", meaning: "Stray cats cared for by locals and often managed with TNR", example: "Community cats are neutered and fed." },
-            { word: "spay/neuter", japanese: "避妊・去勢する", meaning: "Surgical procedures to stop animals from having babies", example: "All the male cats in the colony were neutered." },
-            { word: "adoption center", japanese: "譲渡センター", meaning: "A place where rescued animals can be adopted", example: "She visited the local adoption center to find a new companion." },
-            { word: "rescue organization", japanese: "動物保護団体", meaning: "A group that works to help and protect animals in need", example: "The rescue organization saved many animals from the flood." },
-            { word: "TNR", japanese: "捕獲・不妊手術・元に戻す", meaning: "Trap, Neuter, Return: a method to manage stray/feral cat populations", example: "TNR programs help reduce the number of homeless kittens." },
-            { word: "rehabilitation", japanese: "リハビリテーション", meaning: "Care and treatment to restore an animal to good health or condition", example: "The injured bird required extensive rehabilitation before it could fly again." },
-            { word: "disaster response", japanese: "災害対応", meaning: "Organized efforts to help animals (and people) during emergencies", example: "Effective disaster response includes plans for pets." },
-            { word: "sakura cat", japanese: "さくら猫", meaning: "A community cat that has been neutered and has one ear tipped (cut) as a sign", example: "You can identify a sakura cat by its clipped ear." },
-            { word: "volunteer", japanese: "ボランティア", meaning: "A person who freely offers to do something, often for a charity", example: "Many shelters rely on volunteers to walk dogs." },
-            { word: "animal welfare", japanese: "動物福祉", meaning: "The well-being of animals and how they are treated", example: "Animal welfare laws aim to prevent cruelty." }
+            { word: "abandon", japanese: "遺棄する (iki suru)", meaning: "To leave a pet uncared for.", example: "It is illegal and cruel to _______ an animal when you can no longer care for it." },
+            { word: "adoption", japanese: "譲渡 (jōto)", meaning: "Taking a shelter animal as one's own pet.", example: "Animal _______ gives a homeless pet a second chance at a happy life." },
+            { word: "euthanize", japanese: "安楽死させる (anrakushi saseru)", meaning: "To humanely end an animal's life to stop suffering.", example: "The veterinarian had to _______ the very old and sick dog to end its pain." },
+            { word: "humane", japanese: "人道的な (jindōteki na)", meaning: "Kind and gentle to animals, avoiding pain.", example: "_______ treatment of all animals is a sign of a compassionate society." },
+            { word: "rehabilitation", japanese: "リハビリテーション (rihabiritēshon)", meaning: "Helping a sick or injured animal recover.", example: "The rescued dog needed months of _______ before it was ready for a new home." },
+            { word: "rescue", japanese: "救助する (kyūjo suru)", meaning: "To save an animal from danger or distress.", example: "The team's mission was to _______ cats trapped after the earthquake." },
+            { word: "shelter", japanese: "シェルター (sherutā)", meaning: "A place for homeless animals.", example: "She volunteers at the local animal _______ every weekend." },
+            { word: "spay/neuter", japanese: "避妊去勢手術 (hinin kyosei shujutsu)", meaning: "Operations to stop animals from having babies.", example: "It's important to _______ your pets to help control overpopulation." },
+            { word: "stray", japanese: "野良 (nora)", meaning: "A lost pet or one without a home.", example: "They found a _______ kitten crying under a car." },
+            { word: "volunteer", japanese: "ボランティア (borantia)", meaning: "A person who helps without pay.", example: "Many animal shelters rely on _______ to walk dogs." },
+            { word: "animal welfare", japanese: "動物福祉 (dōbutsu fukushi)", meaning: "The health and happiness of animals.", example: "Promoting _______ means ensuring animals are treated humanely." }
         ];
-        
-        let userReflectionChoices = {};
+
+        const staticMCQData = [
+            { questionText: "1. The veterinarian had to _______ the very old and sick dog to end its pain.", options: ["euthanize", "adoption", "humane"], correctAnswer: "euthanize", idSuffix: "q1_vet_dog" },
+            { questionText: "2. It is illegal and cruel to _______ an animal when you can no longer care for it.", options: ["stray", "abandon", "animal welfare"], correctAnswer: "abandon", idSuffix: "q2_illegal_cruel" },
+            { questionText: "3. _______ treatment of all animals is a sign of a compassionate society.", options: ["Shelter", "Spay/neuter", "Humane"], correctAnswer: "Humane", idSuffix: "q3_compassionate_society" },
+            { questionText: "4. Animal _______ gives a homeless pet a second chance at a happy life.", options: ["adoption", "humane", "euthanize"], correctAnswer: "adoption", idSuffix: "q4_homeless_pet" },
+            { questionText: "5. It's important to _______ your pets to help control overpopulation.", options: ["spay/neuter", "humane", "rehabilitation"], correctAnswer: "spay/neuter", idSuffix: "q5_control_overpopulation" }
+        ];
+
+        let currentVocabIndex = 0;
+        let vocabMCQAnswers = {};
         let selectedMatchingTermDiv = null;
         let matchingGamePairs = [];
         let matchedCount = 0;
+        let userReflectionChoices = {};
 
+        function speakWord(word) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(word);
+                utterance.lang = 'en-US';
+                speechSynthesis.cancel();
+                speechSynthesis.speak(utterance);
+            } else {
+                alert("Sorry, your browser doesn't support text-to-speech.");
+            }
+        }
 
         function updateProgressBar() {
             const progress = ((currentPageIndex + 1) / totalPages) * 100;
             progressBar.style.width = progress + '%';
             progressBar.textContent = Math.round(progress) + '%';
-            if (progress === 100) progressBar.style.borderRadius = '10px';
+            if (progress >= 100) progressBar.style.borderRadius = '10px';
             else progressBar.style.borderRadius = '10px 0 0 10px';
         }
 
-        function showPage(index) {
-             if (currentPageIndex === 0 && index === 1) { 
-                studentName = document.getElementById('studentName').value.trim();
-                if (studentName === "") {
-                    alert("お名前を入力してください。\nPlease enter your name.");
-                    return false; 
-                }
-            }
-
-            pages.forEach((page, i) => {
-                page.classList.toggle('active', i === index);
-            });
-            currentPageIndex = index;
-            prevButton.style.display = (index === 0) ? 'none' : 'inline-block';
-            
-            if (index === totalPages - 1) { 
-                nextButton.textContent = "Finish Module (モジュール終了)";
-                 if(studentName) {
-                    document.getElementById('studentNameGreeting_end').textContent = `Thank you, ${studentName}! ( ${studentName}さん、ありがとうございました！)`;
-                }
+        function updateNextButtonState() {
+            let canProceed = true;
+            if (currentPageIndex === 1 && !allVocabReviewed) canProceed = false;
+            else if (currentPageIndex === 2 && !vocabMCQAttempted) canProceed = false;
+            else if (currentPageIndex === 3 && !vocabMatchingAttempted) canProceed = false;
+            else if (currentPageIndex === 7 && !finalQuizAllCorrect) canProceed = false;
+            else if (currentPageIndex === 8 && !reflectionChoicesSaved) canProceed = false;
+            nextButton.disabled = !canProceed;
+            if (currentPageIndex === totalPages - 1) {
+                 nextButton.innerHTML = 'Finish Module <span class="instruction-jp" style="color:white;font-size:0.8em;">(モジュール終了)</span>';
             } else {
                 nextButton.innerHTML = 'Next <span class="instruction-jp" style="color:white;font-size:0.8em;">(次へ)</span>';
             }
-            nextButton.style.display = 'inline-block';
-            nextButton.disabled = false;
+        }
 
+        function showPage(index) {
+             if (currentPageIndex === 0 && index === 1) {
+                studentName = document.getElementById('studentName').value.trim();
+                if (studentName === "") {
+                    alert("お名前を入力してください。\nPlease enter your name.");
+                    return false;
+                }
+            }
+            pages.forEach((page, i) => { page.classList.toggle('active', i === index); });
+            currentPageIndex = index;
+            prevButton.style.display = (index === 0) ? 'none' : 'inline-block';
+            nextButton.style.display = 'inline-block';
             updateProgressBar();
+            updateNextButtonState();
             window.scrollTo(0,0);
+
+            if (index === 1 && vocabularyData.length > 0) {
+                if (!document.getElementById('flashcardFrontContent').hasChildNodes() || document.getElementById('flashcardFrontContent').textContent.trim() === "") { // Check if empty or only whitespace
+                    displayCurrentVocabWord();
+                }
+            } else if (index === 2) {
+                console.log("Attempting to show page for MCQ (index 2). Current child nodes in container: ", document.getElementById('vocabMCQContainer').childNodes.length);
+                // Always try to populate if it's the MCQ page, or ensure it's populated if no specific 'attempted' logic for display
+                // The condition `!document.getElementById('vocabMCQContainer').hasChildNodes()` should work.
+                // Forcing it for debug:
+                populateVocabMCQ(); // Forcing population on page show for debug. Remove force if hasChildNodes check is preferred.
+
+                document.getElementById('vocabMCQPracticeCompleteMessage').style.display = vocabMCQAttempted ? 'block' : 'none';
+            } else if (index === 3 && vocabularyData.length > 0) {
+                if (!document.getElementById('matchingTerms').querySelector('.matching-item')) {
+                    setupMatchingGame();
+                }
+                document.getElementById('vocabMatchingPracticeCompleteMessage').style.display = vocabMatchingAttempted ? 'block' : 'none';
+            } else if (index === totalPages - 1) {
+                 if(studentName) {
+                    document.getElementById('studentNameGreeting_end').textContent = `Thank you, ${studentName}! ( ${studentName}さん、ありがとうございました！)`;
+                }
+            }
             return true;
         }
 
         function navigate(direction) {
             const newIndex = currentPageIndex + direction;
-
-            if (currentPageIndex === 0 && direction === 1) { 
-                if (!showPage(newIndex)) return; 
-            } else if (currentPageIndex === totalPages - 1 && direction === 1) { 
+            if (currentPageIndex === 0 && direction === 1) { if (!showPage(newIndex)) return; }
+            else if (currentPageIndex === totalPages - 1 && direction === 1) {
                 alert(`Module finished! Thank you, ${studentName || 'student'}!\nモジュール終了です！${studentName || '学生'}さん、ありがとうございました！`);
-                nextButton.disabled = true;
-                prevButton.disabled = true;
+                nextButton.disabled = true; prevButton.disabled = true;
+                const feedbackText = document.getElementById('moduleFeedback').value;
+                if(feedbackText) console.log("Module Feedback:", feedbackText);
                 return;
-            } else if (newIndex >= 0 && newIndex < totalPages) {
-                showPage(newIndex);
-            }
+            } else if (newIndex >= 0 && newIndex < totalPages) { showPage(newIndex); }
         }
-        
-        function populateVocabulary() {
-            const flashcardContainer = document.getElementById('flashcardContainer');
-            const tableBody = document.getElementById('vocabularyTableBody');
-            const fillBlankContainer = document.getElementById('vocabFillBlankContainer');
-            let fillBlankHTML = '';
-            
-            const fillBlankSelection = [...vocabularyData].sort(() => 0.5 - Math.random()).slice(0, 7);
 
-            vocabularyData.forEach((item) => {
-                const card = document.createElement('div');
-                card.className = 'flashcard';
-                card.innerHTML = `
-                    <div class="flashcard-inner">
-                        <div class="flashcard-front">${item.word}</div>
-                        <div class="flashcard-back">
-                            <p><strong>Japanese:</strong> ${item.japanese}</p>
-                            <p><strong>Meaning:</strong> ${item.meaning}</p>
-                            <p><strong>Example:</strong> ${item.example}</p>
-                        </div>
-                    </div>`;
-                card.onclick = function() { this.classList.toggle('flipped'); };
-                flashcardContainer.appendChild(card);
+        function displayCurrentVocabWord() { /* ... same as before ... */
+            if (vocabularyData.length === 0) return;
+            const wordData = vocabularyData[currentVocabIndex];
+            const flashcardFront = document.getElementById('flashcardFrontContent');
+            flashcardFront.innerHTML = '';
+            const wordTextSpan = document.createElement('span');
+            wordTextSpan.textContent = wordData.word;
+            flashcardFront.appendChild(wordTextSpan);
 
-                const row = tableBody.insertRow();
-                row.innerHTML = `<td>${item.word}</td><td>${item.japanese}</td><td>${item.meaning}</td><td>${item.example}</td>`;
-            });
+            const audioButton = document.createElement('button');
+            audioButton.className = 'audio-button'; audioButton.innerHTML = '🔊';
+            audioButton.setAttribute('aria-label', 'Listen to word');
+            audioButton.onclick = function(event) { event.stopPropagation(); speakWord(wordData.word); };
+            flashcardFront.appendChild(audioButton);
 
-            fillBlankSelection.forEach((item, index) => {
-                 if (item.example.toLowerCase().includes(item.word.toLowerCase())) {
-                    const regex = new RegExp(`\\b${item.word}\\b`, 'i');
-                    const sentenceParts = item.example.split(regex);
-                    if (sentenceParts.length === 2) {
-                        const questionText = sentenceParts[0] + ' ________ ' + sentenceParts[1];
-                        fillBlankHTML += `
-                            <div class="quiz-question">
-                                <p><strong>${index + 1}. Fill in the blank:</strong> ${questionText}</p>
-                                <input type="text" id="vocab_fill_${index}" data-answer="${item.word}" style="width: 150px; padding: 8px; border-radius:4px; border:1px solid #ccc;">
-                                <button class="button-like" style="padding: 8px 12px; font-size:0.9em;" onclick="checkVocabAnswer('vocab_fill_${index}', '${item.word}')">Check</button>
-                                <div id="feedback_vocab_fill_${index}" class="feedback" style="display:none;"></div>
-                            </div>`;
-                    }
+            let exampleText = wordData.example;
+            let wordToUnderline = wordData.word;
+            if (wordData.word === "humane" && exampleText.toLowerCase().startsWith("_______")) {
+                 wordToUnderline = wordData.word.charAt(0).toUpperCase() + wordData.word.slice(1);
+            }
+            exampleText = exampleText.replace('_______', `<u>${wordToUnderline}</u>`);
+
+            document.getElementById('flashcardBackContent').innerHTML = `
+                <p><strong>Japanese:</strong> ${wordData.japanese}</p>
+                <p><strong>Meaning:</strong> ${wordData.meaning}</p>
+                <p><strong>Example:</strong> ${exampleText}</p>`;
+            document.getElementById('flashcardCounter').textContent = `Word ${currentVocabIndex + 1} of ${vocabularyData.length}`;
+            const currentCard = document.getElementById('currentFlashcard');
+            if(currentCard) currentCard.classList.remove('flipped');
+
+            document.getElementById('prevVocabButton').disabled = (currentVocabIndex === 0);
+            document.getElementById('nextVocabButton').disabled = (currentVocabIndex === vocabularyData.length - 1);
+
+            if (currentVocabIndex === vocabularyData.length - 1) {
+                if (!allVocabReviewed) {
+                    allVocabReviewed = true;
+                    document.getElementById('allVocabLearnedMessage').style.display = 'block';
+                    updateNextButtonState();
                 }
-            });
-            fillBlankContainer.innerHTML += fillBlankHTML;
-            setupMatchingGame();
-        }
-        
-        function checkVocabAnswer(inputId, correctAnswer) {
-            const inputElement = document.getElementById(inputId);
-            const feedbackElement = document.getElementById('feedback_' + inputId);
-            if (inputElement.value.trim().toLowerCase() === correctAnswer.toLowerCase()) {
-                feedbackElement.textContent = 'Correct! (正解！)';
-                feedbackElement.className = 'feedback correct';
-            } else {
-                feedbackElement.textContent = `Try again! The answer is "${correctAnswer}". (もう一度試してください！正解は「${correctAnswer}」です。)`;
-                feedbackElement.className = 'feedback incorrect';
             }
-            feedbackElement.style.display = 'block';
+        }
+        function showNextWord() { /* ... same as before ... */
+            if (currentVocabIndex < vocabularyData.length - 1) {
+                currentVocabIndex++;
+                displayCurrentVocabWord();
+            } else {
+                if (!allVocabReviewed) {
+                    allVocabReviewed = true;
+                    document.getElementById('allVocabLearnedMessage').style.display = 'block';
+                    updateNextButtonState();
+                }
+            }
+        }
+        function showPrevWord() { /* ... same as before ... */
+             if (currentVocabIndex > 0) { currentVocabIndex--; displayCurrentVocabWord(); }
         }
 
-        function setupMatchingGame() {
+        function populateVocabMCQ() {
+            console.log("populateVocabMCQ function called.");
+            const container = document.getElementById('vocabMCQContainer');
+
+            if (!container) {
+                console.error("CRITICAL ERROR: vocabMCQContainer div not found in HTML!");
+                return;
+            }
+            console.log("vocabMCQContainer found:", container);
+
+            if (!staticMCQData || staticMCQData.length === 0) {
+                console.error("ERROR: staticMCQData is missing, empty, or not defined at this point.");
+                container.innerHTML = "<p style='color:red;'>Error: Questions data is missing. Cannot load questions.</p>";
+                return;
+            }
+            console.log("staticMCQData content (first item):", JSON.stringify(staticMCQData[0]));
+            console.log("Total staticMCQData items:", staticMCQData.length);
+
+            vocabMCQAnswers = {};
+            let questionsHTML = '';
+
+            staticMCQData.forEach((qData, idx) => {
+                if (!qData || !qData.options || !qData.questionText || !qData.correctAnswer || !qData.idSuffix) {
+                    console.error("Malformed question data at index:", idx, qData);
+                    return; // Skip this malformed question
+                }
+                const questionId = `vocab_mcq_${qData.idSuffix}`;
+                vocabMCQAnswers[questionId] = qData.correctAnswer;
+                const shuffledOptions = [...qData.options].sort(() => 0.5 - Math.random());
+
+                questionsHTML += `
+                    <div class="quiz-question vocab-mcq-question">
+                        <p><strong>${qData.questionText.replace('_______', '<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>')}</strong></p>
+                        ${shuffledOptions.map(opt => `<label><input type="radio" name="${questionId}" value="${opt}"> <span>${opt}</span></label>`).join('')}
+                        <div id="feedback_${questionId}" class="feedback" style="display:none;"></div>
+                    </div>`;
+            });
+
+            if (questionsHTML === '') {
+                console.warn("No HTML was generated for questions. This means the staticMCQData loop might not have run or found valid data.");
+                container.innerHTML = "<p style='color:orange;'>Warning: No questions were rendered. Check console for errors.</p>";
+            } else {
+                container.innerHTML = questionsHTML;
+                console.log("SUCCESS: MCQ HTML has been populated into the container.");
+            }
+
+            vocabMCQAttempted = false;
+            document.getElementById('vocabMCQPracticeCompleteMessage').style.display = 'none';
+            updateNextButtonState();
+        }
+
+        function checkVocabMCQAnswers() { /* ... same as before ... */
+            let correctCount = 0; const questionCount = Object.keys(vocabMCQAnswers).length;
+            let allAnswered = true;
+            if (questionCount === 0) {
+                document.getElementById('vocabMCQResult').innerHTML = 'No MCQ questions to check.';
+                document.getElementById('vocabMCQResult').style.display = 'block';
+                vocabMCQAttempted = true;
+                document.getElementById('vocabMCQPracticeCompleteMessage').style.display = 'block';
+                updateNextButtonState();
+                return;
+            }
+
+            for (const questionId in vocabMCQAnswers) {
+                const correctAnswer = vocabMCQAnswers[questionId];
+                const selectedOption = document.querySelector(`input[name="${questionId}"]:checked`);
+                const feedbackEl = document.getElementById(`feedback_${questionId}`);
+                if (selectedOption) {
+                    const selectedValue = selectedOption.value;
+                    const correctWordData = vocabularyData.find(v => v.word.toLowerCase() === correctAnswer.toLowerCase());
+                    const selectedWordData = vocabularyData.find(v => v.word.toLowerCase() === selectedValue.toLowerCase());
+
+                    if (selectedValue.toLowerCase() === correctAnswer.toLowerCase()) {
+                        correctCount++;
+                        feedbackEl.textContent = `Correct! "${correctAnswer}" is the right word.`;
+                        feedbackEl.className = 'feedback correct';
+                    } else {
+                        let feedbackText = `Not quite. The correct answer is "<strong>${correctAnswer}</strong>".`;
+                        if (correctWordData) {
+                             feedbackText += ` (Meaning: ${correctWordData.meaning})`;
+                        }
+                        feedbackText += `<br>You chose "<em>${selectedValue}</em>"`;
+                        if (selectedWordData) {
+                            feedbackText += ` (Meaning: ${selectedWordData.meaning})`;
+                        }
+                        feedbackText += ".";
+                        feedbackEl.innerHTML = feedbackText;
+                        feedbackEl.className = 'feedback incorrect';
+                    }
+                } else { allAnswered = false; feedbackEl.textContent = 'No answer selected.'; feedbackEl.className = 'feedback incorrect'; }
+                feedbackEl.style.display = 'block';
+            }
+            const resultEl = document.getElementById('vocabMCQResult');
+            if (!allAnswered) {
+                resultEl.innerHTML = `Please answer all questions. <span class="instruction-jp">(全問解答してください。)</span>`;
+                vocabMCQAttempted = false;
+            } else {
+                resultEl.innerHTML = `MCQ: <strong>${correctCount} / ${questionCount}</strong> correct. <span class="instruction-jp">(${questionCount}問中${correctCount}問正解)</span>`;
+                vocabMCQAttempted = true;
+                document.getElementById('vocabMCQPracticeCompleteMessage').style.display = 'block';
+            }
+            resultEl.style.display = 'block';
+            updateNextButtonState();
+        }
+
+        function setupMatchingGame() { /* ... same as before ... */
             const termsContainer = document.getElementById('matchingTerms');
             const definitionsContainer = document.getElementById('matchingDefinitions');
             const feedbackArea = document.getElementById('matchingFeedbackArea');
-            
-            termsContainer.innerHTML = '<h4>Words (単語)</h4>';
-            definitionsContainer.innerHTML = '<h4>Meanings (意味)</h4>';
-            feedbackArea.innerHTML = '';
-            selectedMatchingTermDiv = null; 
-            matchedCount = 0; 
-
-            document.querySelectorAll('.matching-item').forEach(item => item.remove());
-
-
-            matchingGamePairs = [...vocabularyData].sort(() => 0.5 - Math.random()).slice(0, 5);
-            
-            matchingGamePairs.forEach(pair => {
-                const termDiv = document.createElement('div');
-                termDiv.className = 'matching-item term-item';
-                termDiv.textContent = pair.word;
-                termDiv.dataset.word = pair.word; 
-                termDiv.onclick = handleTermClick;
-                termsContainer.appendChild(termDiv);
-            });
-
-            const shuffledPairs = [...matchingGamePairs].sort(() => 0.5 - Math.random());
-            shuffledPairs.forEach(pair => {
-                const defDiv = document.createElement('div');
-                defDiv.className = 'matching-item definition-item';
-                defDiv.textContent = pair.meaning;
-                defDiv.dataset.correctWord = pair.word; 
-                defDiv.onclick = handleDefinitionClick;
-                definitionsContainer.appendChild(defDiv);
-            });
-        }
-
-        function handleTermClick(event) {
-            const clickedTermDiv = event.target;
-            if (clickedTermDiv.classList.contains('matched')) return;
-
-            if (selectedMatchingTermDiv) {
-                selectedMatchingTermDiv.classList.remove('selected');
-            }
-            
-            selectedMatchingTermDiv = clickedTermDiv;
-            selectedMatchingTermDiv.classList.add('selected');
-            document.getElementById('matchingFeedbackArea').textContent = 'Now click on the correct meaning on the right. (次に右側の正しい意味をクリックしてください。)';
-        }
-
-        function handleDefinitionClick(event) {
-            const clickedDefinitionDiv = event.target;
-            const feedbackArea = document.getElementById('matchingFeedbackArea');
-
-            if (clickedDefinitionDiv.classList.contains('matched')) return;
-
-            if (!selectedMatchingTermDiv) {
-                feedbackArea.textContent = 'Please select a word from the left first. (まず左から単語を選んでください。)';
+            termsContainer.innerHTML = '<h4>Words (単語)</h4>'; definitionsContainer.innerHTML = '<h4>Meanings (意味)</h4>';
+            feedbackArea.textContent = 'Select a word, then its meaning.'; feedbackArea.className = 'feedback info';
+            selectedMatchingTermDiv = null; matchedCount = 0;
+            document.getElementById('matchingGameResult').style.display = 'none';
+            matchingGamePairs = [...vocabularyData].sort(() => 0.5 - Math.random()).slice(0, Math.min(5, vocabularyData.length));
+            if (matchingGamePairs.length === 0) {
+                feedbackArea.textContent = "No matching pairs to display.";
+                vocabMatchingAttempted = true;
+                document.getElementById('vocabMatchingPracticeCompleteMessage').style.display = 'block';
+                updateNextButtonState();
                 return;
             }
-
-            const selectedWord = selectedMatchingTermDiv.dataset.word;
-            const correctWordForThisMeaning = clickedDefinitionDiv.dataset.correctWord;
-
+            matchingGamePairs.forEach(p => {
+                const t = document.createElement('div'); t.className='matching-item term-item'; t.textContent=p.word; t.dataset.word=p.word; t.onclick=handleTermClick; termsContainer.appendChild(t);
+            });
+            const shuffledDefs = [...matchingGamePairs].sort(() => 0.5 - Math.random());
+            shuffledDefs.forEach(p => {
+                const d = document.createElement('div'); d.className='matching-item definition-item'; d.style.textTransform='none'; d.textContent=p.meaning; d.dataset.correctWord=p.word; d.onclick=handleDefinitionClick; definitionsContainer.appendChild(d);
+            });
+            vocabMatchingAttempted = false;
+            document.getElementById('vocabMatchingPracticeCompleteMessage').style.display = 'none';
+            updateNextButtonState();
+        }
+        function handleTermClick(event) { /* ... same as before ... */
+            const clickedTermDiv = event.target; if (clickedTermDiv.classList.contains('matched')) return;
+            if (selectedMatchingTermDiv) { selectedMatchingTermDiv.classList.remove('selected'); }
+            selectedMatchingTermDiv = clickedTermDiv; selectedMatchingTermDiv.classList.add('selected');
+            const feedbackArea = document.getElementById('matchingFeedbackArea');
+            feedbackArea.textContent = `"${selectedMatchingTermDiv.textContent}" selected. Now click its meaning.`;
+            feedbackArea.className = 'feedback info';
+        }
+        function handleDefinitionClick(event) { /* ... same as before ... */
+            const clickedDefinitionDiv = event.target; const feedbackArea = document.getElementById('matchingFeedbackArea');
+            if (clickedDefinitionDiv.classList.contains('matched')) return;
+            if (!selectedMatchingTermDiv) { feedbackArea.textContent = 'Please select a word first.'; feedbackArea.className = 'feedback incorrect'; return; }
+            const selectedWord = selectedMatchingTermDiv.dataset.word; const correctWordForThisMeaning = clickedDefinitionDiv.dataset.correctWord;
             if (selectedWord === correctWordForThisMeaning) {
-                feedbackArea.innerHTML = `<span style='color:green;'>Correct! "${selectedWord}" matches. (正解！「${selectedWord}」が一致しました。)</span>`;
-                selectedMatchingTermDiv.classList.add('matched');
-                clickedDefinitionDiv.classList.add('matched');
-                selectedMatchingTermDiv.onclick = null; 
-                clickedDefinitionDiv.onclick = null; 
-                matchedCount++;
+                feedbackArea.innerHTML = `<span style='color:green;'>Correct! "${selectedWord}" matches.</span>`; feedbackArea.className = 'feedback correct';
+                selectedMatchingTermDiv.classList.add('matched'); clickedDefinitionDiv.classList.add('matched');
+                selectedMatchingTermDiv.onclick = null; clickedDefinitionDiv.onclick = null; matchedCount++;
             } else {
-                feedbackArea.innerHTML = `<span style='color:red;'>Incorrect. "${selectedMatchingTermDiv.textContent}" does not match this meaning. Try again. (不正解。「${selectedMatchingTermDiv.textContent}」はこの意味と一致しません。もう一度試してください。)</span>`;
-                selectedMatchingTermDiv.classList.remove('selected');
-                selectedMatchingTermDiv = null; 
-                return; 
+                feedbackArea.innerHTML = `<span style='color:red;'>Incorrect. Try again.</span>`; feedbackArea.className = 'feedback incorrect';
             }
-            
-            selectedMatchingTermDiv.classList.remove('selected');
-            selectedMatchingTermDiv = null;
-
-
-            if (matchedCount === matchingGamePairs.length) {
-                feedbackArea.innerHTML += "<br><strong style='color:blue;'>Well done! You matched all pairs. (素晴らしい！全てのペアをマッチできました。)</strong>";
+            selectedMatchingTermDiv.classList.remove('selected'); selectedMatchingTermDiv = null;
+            if (matchingGamePairs.length > 0 && matchedCount === matchingGamePairs.length) {
+                feedbackArea.innerHTML += "<br><strong style='color:blue;'>All pairs matched!</strong>";
+                document.getElementById('matchingGameResult').style.display = 'block';
+                vocabMatchingAttempted = true;
+                document.getElementById('vocabMatchingPracticeCompleteMessage').style.display = 'block';
+                updateNextButtonState();
             }
         }
-        
-        function resetMatchingGame() {
-             setupMatchingGame();
-        }
-        
-        function setupInTextTranslations() {
+        function resetMatchingGame() { setupMatchingGame(); }
+
+        function setupInTextTranslations() { /* ... same as before ... */
             const translatableSpans = document.querySelectorAll('.translateable');
             translatableSpans.forEach(span => {
                 span.addEventListener('click', function(event) {
-                    event.stopPropagation(); 
-                    const japaneseText = this.dataset.japanese;
+                    event.stopPropagation(); const japaneseText = this.dataset.japanese;
                     translationTooltip.textContent = japaneseText;
-                    
                     const rect = this.getBoundingClientRect();
-                    let tooltipTop = rect.bottom + window.scrollY + 8; 
+                    let tooltipTop = rect.bottom + window.scrollY + 8;
                     let tooltipLeft = rect.left + window.scrollX + (rect.width / 2) - (translationTooltip.offsetWidth / 2);
-
-                    translationTooltip.className = 'tooltip below'; 
-
-                    if (tooltipTop + translationTooltip.offsetHeight > window.innerHeight + window.scrollY || (rect.top - translationTooltip.offsetHeight - 8 < 0 ) ) { 
-                        if (rect.top - translationTooltip.offsetHeight - 8 > window.scrollY) { 
-                             tooltipTop = rect.top + window.scrollY - translationTooltip.offsetHeight - 8;
-                             translationTooltip.className = 'tooltip above';
-                        }
+                    translationTooltip.className = 'tooltip below';
+                    if (tooltipTop + translationTooltip.offsetHeight > window.innerHeight + window.scrollY) {
+                         tooltipTop = rect.top + window.scrollY - translationTooltip.offsetHeight - 8;
+                         translationTooltip.className = 'tooltip above';
                     }
-                    
-                    if (tooltipLeft < 0) {
-                        tooltipLeft = 5; 
-                    } else if (tooltipLeft + translationTooltip.offsetWidth > window.innerWidth) {
-                        tooltipLeft = window.innerWidth - translationTooltip.offsetWidth - 5; 
+                    if (tooltipLeft < 0) tooltipLeft = 5;
+                    if (tooltipLeft + translationTooltip.offsetWidth > window.innerWidth) {
+                        tooltipLeft = window.innerWidth - translationTooltip.offsetWidth - 5;
                     }
-                    
                     translationTooltip.style.top = `${tooltipTop}px`;
                     translationTooltip.style.left = `${tooltipLeft}px`;
                     translationTooltip.style.display = 'block';
                 });
             });
-
             document.addEventListener('click', function(event) {
                 if (translationTooltip.style.display === 'block' && !translationTooltip.contains(event.target) && !event.target.classList.contains('translateable')) {
                     translationTooltip.style.display = 'none';
                 }
             });
         }
-        function toggleChallengeDetail(id) {
+        function toggleChallengeDetail(id) { /* ... same as before ... */
             const detail = document.getElementById(id);
-            const isDisplayed = detail.style.display === 'block';
-            detail.style.display = isDisplayed ? 'none' : 'block';
+            detail.style.display = detail.style.display === 'block' ? 'none' : 'block';
         }
-        
-        function checkQuickCheck(quizIdPrefix, correctAnswers) {
+
+        function checkQuickCheck(quizIdPrefix, correctAnswers) { /* ... same as before ... */
             for (const questionKey in correctAnswers) {
                 const fullQuestionName = `${quizIdPrefix}_${questionKey}`;
                 const selectedOption = document.querySelector(`input[name="${fullQuestionName}"]:checked`);
                 const feedbackEl = document.getElementById(`feedback_${fullQuestionName}`);
                 const expectedAnswer = correctAnswers[questionKey];
-
                 if (selectedOption) {
                     if (selectedOption.value === expectedAnswer) {
-                        feedbackEl.textContent = 'Correct!';
-                        feedbackEl.className = 'feedback correct';
+                        feedbackEl.textContent = 'Correct!'; feedbackEl.className = 'feedback correct';
                     } else {
-                        feedbackEl.textContent = `Incorrect.`; 
+                        const correctLabel = document.querySelector(`input[name="${fullQuestionName}"][value="${expectedAnswer}"] + span`);
+                        let correctAnswerText = expectedAnswer;
+                        if (correctLabel) {
+                            correctAnswerText = correctLabel.textContent.trim().replace(/^[A-Z]\.\s*/, '');
+                        }
+                        feedbackEl.textContent = `Incorrect. Correct answer: ${correctAnswerText}.`;
                         feedbackEl.className = 'feedback incorrect';
                     }
-                } else {
-                    feedbackEl.textContent = 'No answer selected.';
-                    feedbackEl.className = 'feedback incorrect';
-                }
+                } else { feedbackEl.textContent = 'No answer selected.'; feedbackEl.className = 'feedback incorrect';}
                 feedbackEl.style.display = 'block';
             }
         }
 
-        function submitFinalQuiz() { 
-            const answers = { 
-                q1_tnr: 'B', 
-                q2_act: 'B', 
-                q3_jears: 'B', 
-                q4_vacuum: 'False',
-                q5_euth: 'C' 
-            };
-            let score = 0;
-            const totalQuestions = Object.keys(answers).length;
+        function submitFinalQuiz() { /* ... same as before ... */
+            const answers = { q1_tnr: 'B', q2_act: 'B', q3_jears: 'B', q4_vacuum: 'False', q5_euth: 'C' };
+            let score = 0; const totalQuestions = Object.keys(answers).length;
+            let allQuestionsAnswered = true;
+            let currentAllCorrect = true;
 
-            for (const questionName in answers) {
-                const correctAnswer = answers[questionName];
-                const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
-                const feedbackEl = document.getElementById(`feedback_${questionName}`);
-
+            for (const qName in answers) {
+                const correctAnswer = answers[qName];
+                const selectedOption = document.querySelector(`input[name="${qName}"]:checked`);
+                const fbEl = document.getElementById(`feedback_${qName}`);
                 if (selectedOption) {
                     if (selectedOption.value === correctAnswer) {
                         score++;
-                        feedbackEl.textContent = 'Correct!';
-                        feedbackEl.className = 'feedback correct';
+                        fbEl.textContent = 'Correct!'; fbEl.className = 'feedback correct';
                     } else {
-                        const correctLabelParent = document.querySelector(`input[name="${questionName}"][value="${correctAnswer}"]`);
-                        let correctLabelText = correctAnswer; 
-                        if(correctLabelParent && correctLabelParent.parentElement) {
-                           correctLabelText = correctLabelParent.parentElement.textContent.trim();
+                        currentAllCorrect = false;
+                        const correctLabel = document.querySelector(`input[name="${qName}"][value="${correctAnswer}"] + span`);
+                        let correctAnswerText = correctAnswer;
+                         if (correctLabel) {
+                            correctAnswerText = correctLabel.textContent.trim().replace(/^[A-Z]\.\s*/, '');
                         }
-                        feedbackEl.textContent = `Incorrect. Correct answer: ${correctLabelText}`;
-                        feedbackEl.className = 'feedback incorrect';
+                        fbEl.textContent = `Incorrect. The correct answer is: "${correctAnswerText}". Please try again.`;
+                        fbEl.className = 'feedback incorrect';
                     }
                 } else {
-                    feedbackEl.textContent = 'No answer selected.';
-                    feedbackEl.className = 'feedback incorrect';
+                    allQuestionsAnswered = false;
+                    currentAllCorrect = false;
+                    fbEl.textContent = 'No answer selected. Please choose an answer.'; fbEl.className = 'feedback incorrect';
                 }
-                feedbackEl.style.display = 'block';
+                fbEl.style.display = 'block';
             }
-            document.getElementById('quizResult').innerHTML = `You scored <strong>${score} out of ${totalQuestions}</strong>. Review feedback. <span class="instruction-jp">( ${totalQuestions}問中${score}問正解。フィードバックを確認してください。)</span>`;
+
+            const quizResultEl = document.getElementById('quizResult');
+            if (!allQuestionsAnswered) {
+                quizResultEl.innerHTML = `Please answer all questions before submitting. <span class="instruction-jp">(提出前にすべての質問に答えてください。)</span>`;
+                quizResultEl.className = 'feedback incorrect';
+                finalQuizAllCorrect = false;
+            } else if (!currentAllCorrect) {
+                quizResultEl.innerHTML = `You scored <strong>${score} / ${totalQuestions}</strong>. Some answers are incorrect. Please review the feedback for each question, correct your answers, and submit again. <span class="instruction-jp">(${totalQuestions}問中${score}問正解。不正解の箇所があります。各問題のフィードバックを確認し、修正して再度提出してください。)</span>`;
+                quizResultEl.className = 'feedback incorrect';
+                finalQuizAllCorrect = false;
+            } else {
+                quizResultEl.innerHTML = `Congratulations! You scored <strong>${score} / ${totalQuestions}</strong>. All answers are correct! You can now proceed. <span class="instruction-jp">おめでとうございます！${totalQuestions}問中${score}問正解です。全問正解です！次に進むことができます。</span>`;
+                quizResultEl.className = 'feedback correct';
+                finalQuizAllCorrect = true;
+            }
+            quizResultEl.style.display = 'block';
+            updateNextButtonState();
         }
 
-        function saveReflectionChoices() {
-             userReflectionChoices.tnr = document.querySelector('input[name="reflect_tnr"]:checked')?.value;
+        function saveReflectionChoices() { /* ... same as before ... */
+            userReflectionChoices.tnr = document.querySelector('input[name="reflect_tnr"]:checked')?.value;
             userReflectionChoices.community_cat = document.querySelector('input[name="reflect_community_cat"]:checked')?.value;
             userReflectionChoices.adopt_buy = document.querySelector('input[name="reflect_adopt_buy"]:checked')?.value;
             userReflectionChoices.student_help = document.querySelector('input[name="reflect_student_help"]:checked')?.value;
-
             const feedback = document.getElementById('reflectionFeedback');
-            if (Object.values(userReflectionChoices).some(choice => choice === undefined)) {
-                feedback.textContent = "Please select an option for all reflection questions. (全ての質問に選択肢を選んでください。)";
-                feedback.style.color = "red";
+            if (Object.values(userReflectionChoices).some(c => c === undefined)) {
+                feedback.textContent = "Please select an option for all reflection questions to continue.";
+                feedback.className = 'feedback incorrect';
+                reflectionChoicesSaved = false;
             } else {
-                feedback.textContent = "Your choices have been noted. You can refer to these during your discussion. (選択が記録されました。ディスカッションの際に参考にしてください。)";
-                feedback.style.color = "green";
+                feedback.textContent = "Your choices have been noted for discussion.";
+                feedback.className = 'feedback correct';
+                reflectionChoicesSaved = true;
             }
             feedback.style.display = 'block';
+            updateNextButtonState();
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            populateVocabulary();
+            console.log("DOM fully loaded and parsed.");
             setupInTextTranslations();
-            showPage(0); 
+            showPage(0);
+            document.querySelectorAll('.vocab-highlight').forEach(span => {
+                const term = span.dataset.term?.toLowerCase();
+                if (term) {
+                    const vocabItem = vocabularyData.find(v => v.word === term);
+                    if (vocabItem) {
+                        span.title = `${vocabItem.word} (${vocabItem.japanese}): ${vocabItem.meaning}`;
+                    }
+                }
+            });
         });
     </script>
 </body>
